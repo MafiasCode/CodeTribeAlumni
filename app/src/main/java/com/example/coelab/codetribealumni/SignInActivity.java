@@ -14,5 +14,5 @@ public class SignInActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    
+
 }
