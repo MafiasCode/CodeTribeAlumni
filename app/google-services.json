@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "308622579126",
+    "firebase_url": "https://codetribealumni.firebaseio.com",
+    "project_id": "codetribealumni",
+    "storage_bucket": "codetribealumni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308622579126:android:66ef5fe038cbfad8",
+        "android_client_info": {
+          "package_name": "com.example.coelab.codetribealumni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308622579126-7u4tkt87qmatrd8nle6gm8qdr0aern9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coelab.codetribealumni",
+            "certificate_hash": "b10b00b36a725ab4a852dd53b5775901858fe865"
+          }
+        },
+        {
+          "client_id": "308622579126-umofuq4rgu8rgmbqau4tog67lobjck0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV-r00KFcxr_VsRFXYFpOJAUxMqYjg1ic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308622579126-umofuq4rgu8rgmbqau4tog67lobjck0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
