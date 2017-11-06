@@ -12,6 +12,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         //ActionBar actionBar = getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 
