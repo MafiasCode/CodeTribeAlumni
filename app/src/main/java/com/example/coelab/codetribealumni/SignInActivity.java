@@ -31,7 +31,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_in);
         //ActionBar actionBar = getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login...");
+        getSupportActionBar().setTitle("Login");
 
         //FirebaseAuth
         auth = FirebaseAuth.getInstance();
