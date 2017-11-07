@@ -14,13 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("");
 
+        //startActivity(new Intent(getApplicationContext(),SignInActivity.class));
 
-        //
     }
-
-    //code to intent to the next screen depending on the pressed button
     public void sign_in(View view){
 
         Intent intent = new Intent(this,SignInActivity.class);
