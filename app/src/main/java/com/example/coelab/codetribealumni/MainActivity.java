@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     //code to intent to the next screen depending on the pressed button
     public void sign_in(View view){
 
-        //Intent intent = new Intent(this,SignInActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this,SignInActivity.class);
+        startActivity(intent);
     }
 
     public void sign_up(View view){
