@@ -71,7 +71,7 @@
 
     <Button android:id="@+id/btnSignIn"
         android:layout_marginTop="4dp"
-        android:background="@android:color/black"
+        android:background="@drawable/buttonshape"
         android:text="Sign In"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"

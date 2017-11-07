@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "308622579126",
-    "firebase_url": "https://codetribealumni.firebaseio.com",
-    "project_id": "codetribealumni",
-    "storage_bucket": "codetribealumni.appspot.com"
+    "project_number": "820666147952",
+    "firebase_url": "https://codetribealumni-ed9c0.firebaseio.com",
+    "project_id": "codetribealumni-ed9c0",
+    "storage_bucket": "codetribealumni-ed9c0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:308622579126:android:66ef5fe038cbfad8",
+        "mobilesdk_app_id": "1:820666147952:android:66ef5fe038cbfad8",
         "android_client_info": {
           "package_name": "com.example.coelab.codetribealumni"
         }
       },
       "oauth_client": [
         {
-          "client_id": "308622579126-7u4tkt87qmatrd8nle6gm8qdr0aern9j.apps.googleusercontent.com",
+          "client_id": "820666147952-kr3nglf9n90k8i9urs1tb4a3nugpai26.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.coelab.codetribealumni",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "308622579126-umofuq4rgu8rgmbqau4tog67lobjck0k.apps.googleusercontent.com",
+          "client_id": "820666147952-5qi1b5sprb4l2laass4o24h8hem3dnes.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDV-r00KFcxr_VsRFXYFpOJAUxMqYjg1ic"
+          "current_key": "AIzaSyABSidTvZdcq02QaIV84Q3bY85McY0Sin0"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "308622579126-umofuq4rgu8rgmbqau4tog67lobjck0k.apps.googleusercontent.com",
+              "client_id": "820666147952-5qi1b5sprb4l2laass4o24h8hem3dnes.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
