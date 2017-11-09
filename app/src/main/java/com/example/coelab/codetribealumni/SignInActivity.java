@@ -23,7 +23,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     String mail,pass;
     private Button login,forgotPass,createAccount;
     private FirebaseAuth auth;
+
+
+
     private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +84,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
+
                         FirebaseUser user = auth.getCurrentUser();
                         if(user.isEmailVerified()){
                             String[] token = mail.split("@");
@@ -100,6 +105,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(getApplicationContext(),"Please verify your email!",Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }
+
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Wrong login credentials",Toast.LENGTH_LONG).show();
@@ -111,9 +117,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         }
         else if(view == forgotPass){
 
+            Intent intent = new Intent(this, ForgotPassword.class);
+            startActivity(intent);
+
         }
         else if(view == createAccount){
 
         }
     }
+
+
 }
