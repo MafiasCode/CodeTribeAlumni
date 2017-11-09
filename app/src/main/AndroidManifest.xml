@@ -15,13 +15,20 @@
             android:name=".SignupActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".SignInActivity" />
-
+          
         <activity android:name=".MainActivity" > 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> </actitvity>
+
+            </intent-filter>
+        </activity>
+       
+        <activity android:name=".ForgotPassword" />
+  
+
+            
         <activity
             android:name=".StudentLandingPage"
             android:label="@string/title_activity_student_landing_page"
@@ -30,3 +37,4 @@
       <activity android:name=".FacilitatorLandingPage" />
     </application>
 </manifest>
+
