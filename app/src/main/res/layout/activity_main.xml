@@ -76,5 +76,5 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:text="About Us"
-        android:onClick="about_us"/>
+        android:onClick="aboutus"/>
 </LinearLayout>

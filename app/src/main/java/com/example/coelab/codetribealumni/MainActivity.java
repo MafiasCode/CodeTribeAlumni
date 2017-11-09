@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sign_up(View view){
-        //Intent intent = new Intent(this,SignUpActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this,SignupActivity.class);
+        startActivity(intent);
     }
 
-    //public void about_us (View view){
-        //Intent intent = new Intent(this,AboutActivity.class);
-        //startActivity(intent);
-   // }
+    public void aboutus (View view){
+        Intent intent = new Intent(this,AboutActivity.class);
+        startActivity(intent);
+   }
 }
