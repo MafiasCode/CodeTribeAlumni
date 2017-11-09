@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CodeTribeAlumni</string>
+
     <string-array name="location">
         <item>Select codetribe location</item>
         <item>Tshwane</item>
@@ -24,4 +25,7 @@
         <item>Select year</item>
         <item>2018</item>
     </string-array>
+
+    <string name="title_activity_student_landing_page">Student</string>
+
 </resources>
