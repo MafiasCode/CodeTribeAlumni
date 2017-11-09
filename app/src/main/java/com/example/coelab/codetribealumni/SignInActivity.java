@@ -33,7 +33,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle("");
         //progress dialog
         dialog = new ProgressDialog(this);
         dialog.setTitle("Signing in");
@@ -84,28 +84,32 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
 
                         FirebaseUser user = auth.getCurrentUser();
-                        String[] token = mail.split("@");
-                        if(token[1].equalsIgnoreCase("mlab.co.za"))
-                        {
-                            Intent intent = new Intent(getApplicationContext(),FacilitatorActivity.class);
-                            intent.putExtra("Id",user.getUid());
-                            startActivity(intent);
-                            dialog.dismiss();
+                        if(user.isEmailVerified()){
+                            String[] token = mail.split("@");
+                            if(token[1].equalsIgnoreCase("mlab.co.za")){
+                                Intent intent = new Intent(getApplicationContext(),FacilitatorLandingPage.class);
+                                intent.putExtra("Id",user.getUid());
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                            else{
+                                Intent intent = new Intent(getApplicationContext(),StudentLandingPage.class);
+                                intent.putExtra("Id",user.getUid());
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
                         }
                         else{
-
-                            Intent intent = new Intent(getApplicationContext(),StudentLandingPage.class);
-                            intent.putExtra("Id",user.getUid());
-                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(),"Please verify your email!",Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }
 
                     }
                     else{
-                        Toast.makeText(getApplicationContext(),"Unsuccessful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Wrong login credentials",Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
 
@@ -118,11 +122,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
 
         }
-        else if(view == createAccount)
-        {
-            dialog.dismiss();
-            Intent intent = new Intent(getBaseContext(),SignupActivity.class);
-            startActivity(intent);
+        else if(view == createAccount){
+            startActivity(new Intent(getApplicationContext(),SignupActivity.class));
         }
     }
 
