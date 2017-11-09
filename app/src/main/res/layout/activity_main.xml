@@ -13,31 +13,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_weight="0.14"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:text="CodeTribe"
             android:textColor="@color/colorPrimary"
-            android:text="CodeTribe" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:text="Alumni"
             android:textColor="@color/mainColor"
-            android:text="Alumni" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="149dp"
+        android:layout_width="204dp"
         android:layout_height="47dp"
         android:src="@drawable/logo"
         android:layout_weight="0.17" />
@@ -65,4 +65,16 @@
         android:textSize="20sp"
         android:text="Sign In"
         android:onClick="sign_in"/>
+
+    <Button
+        android:id="@+id/btn_aboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="About Us"
+        android:onClick="about_us"/>
 </LinearLayout>
