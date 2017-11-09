@@ -10,15 +10,10 @@
     android:weightSum="1"
     tools:context="com.example.coelab.codetribealumni.MainActivity">
 
-
-    tools:context="com.example.coelab.codetribealumni.MainActivity"
-    android:weightSum="1"
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_weight="0.14"
         android:gravity="center">
 
         <TextView
@@ -44,30 +39,44 @@
         android:id="@+id/imageView"
         android:layout_width="181dp"
         android:layout_height="80dp"
-
         android:layout_weight="0.17" />
 
     <Button
         android:id="@+id/sign_up"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:background="@drawable/buttonshape"
-        android:onClick="sign_up"
-        android:text="Sign Up"
         android:textColor="@color/buttonText"
+        android:textStyle="bold"
         android:textSize="20sp"
-        android:textStyle="bold" />
-
+        android:text="Sign Up"
+        android:onClick="sign_up"/>
 
     <Button
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:background="@drawable/buttonshape"
-        android:onClick="sign_in"
         android:text="Sign In"
+        android:onClick="sign_in"
         android:textColor="@color/buttonText"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_aboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="About Us"
+        android:onClick="about_us"/>
+
 </LinearLayout>

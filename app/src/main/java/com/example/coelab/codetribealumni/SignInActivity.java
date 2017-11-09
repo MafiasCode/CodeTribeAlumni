@@ -1,7 +1,6 @@
 package com.example.coelab.codetribealumni;
 
-import android.app.ActionBar;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,14 +24,20 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button login,forgotPass,createAccount;
     private FirebaseAuth auth;
 
+
+
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        //ActionBar actionBar = getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login...");
-
+        getSupportActionBar().setTitle("Login");
+        //progress dialog
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Signing in");
+        dialog.setMessage("Please wait...");
         //FirebaseAuth
         auth = FirebaseAuth.getInstance();
         //finding views
@@ -54,21 +58,25 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(myIntent);
         return true;
+
     }
 
     @Override
     public void onClick(View view) {
+        dialog.show();
         if(view == login){
             mail = email.getText().toString().trim();
             pass = password.getText().toString().trim();
             if(TextUtils.isEmpty(mail)){
                 email.setError("Field cannot be empty!");
                 email.setHintTextColor(Color.RED);
+                dialog.dismiss();
                 return;
             }
             if(TextUtils.isEmpty(pass)){
                 password.setError("Field cannot be empty!");
                 password.setHintTextColor(Color.RED);
+                dialog.dismiss();
                 return;
             }
             auth.signInWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -77,10 +85,27 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
 
+                        FirebaseUser user = auth.getCurrentUser();
+                        String[] token = mail.split("@");
+                        if(token[1].equalsIgnoreCase("mlab.co.za")){
+                            Intent intent = new Intent(getApplicationContext(),FacilitatorLandingPage.class);
+                            intent.putExtra("Id",user.getUid());
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
+                        else{
+                            Intent intent = new Intent(getApplicationContext(),StudentLandingPage.class);
+                            intent.putExtra("Id",user.getUid());
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
+
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Unsuccessful",Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
                     }
+
                 }
             });
         }
