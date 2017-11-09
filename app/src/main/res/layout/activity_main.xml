@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-
+    android:background="@android:color/white"
     android:weightSum="1"
     tools:context="com.example.coelab.codetribealumni.MainActivity">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_weight="0.14"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:text="CodeTribe"
             android:textColor="@color/colorPrimary"
-            android:text="CodeTribe" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:text="Alumni"
             android:textColor="@android:color/holo_green_light"
-            android:text="Alumni" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -40,12 +39,15 @@
         android:id="@+id/imageView"
         android:layout_width="181dp"
         android:layout_height="80dp"
-        android:layout_weight="0.17" />
+        android:layout_weight="0.17"
+        android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/sign_up"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:textColor="@android:color/white"
@@ -54,42 +56,30 @@
         android:text="Sign Up"
         android:onClick="sign_up"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimary"
-            android:text="CodeTribe" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/mainColor"
-            android:text="Alumni" />
-    </LinearLayout>
-
-
-
-
 
     <Button
         android:id="@+id/sign_in"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
         android:background="@drawable/buttonshape"
-        android:textColor="@color/colorAccent"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="20sp"
         android:text="Sign In"
         android:onClick="sign_in"/>
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_aboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="About Us"
+        android:onClick="aboutus"/>
+</LinearLayout>

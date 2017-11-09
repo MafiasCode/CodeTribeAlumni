@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+
 
     }
     public void sign_in(View view){
@@ -25,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sign_up(View view){
-        //Intent intent = new Intent(this,SignUpActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this,SignupActivity.class);
+        startActivity(intent);
     }
+
+    public void aboutus (View view){
+        Intent intent = new Intent(this,AboutActivity.class);
+        startActivity(intent);
+   }
 }
