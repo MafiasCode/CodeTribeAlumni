@@ -122,7 +122,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         }
         else if(view == createAccount){
-
+            startActivity(new Intent(getApplicationContext(),SignupActivity.class));
         }
     }
 

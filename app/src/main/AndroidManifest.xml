@@ -31,5 +31,6 @@
 
       <activity android:name=".FacilitatorLandingPage" />
         <activity android:name=".AboutActivity" />
+        <activity android:name=".ForgotPassword" />
     </application>
 </manifest>

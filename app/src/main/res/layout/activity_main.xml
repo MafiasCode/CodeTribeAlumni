@@ -39,12 +39,15 @@
         android:id="@+id/imageView"
         android:layout_width="181dp"
         android:layout_height="80dp"
-        android:layout_weight="0.17" />
+        android:layout_weight="0.17"
+        android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/sign_up"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:textColor="@android:color/white"
@@ -56,9 +59,11 @@
 
     <Button
         android:id="@+id/sign_in"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
         android:background="@drawable/buttonshape"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -74,7 +79,7 @@
         android:background="@android:color/transparent"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="About Us"
         android:onClick="aboutus"/>
 </LinearLayout>
