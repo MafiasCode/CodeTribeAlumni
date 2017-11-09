@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">CodeTribeAlumni</string>
-    <string name="title_activity_student_landing_page">StudentLandingPage</string>
+
+    <string-array name="location">
+        <item>Select codetribe location</item>
+        <item>Tshwane</item>
+        <item>Thembisa</item>
+        <item>Soweto</item>
+        <item>Alexandra</item>
+    </string-array>
+
+    <string-array name="role">
+        <item>Select role</item>
+        <item>Student</item>
+        <item>Facilitator</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Select gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>Select year</item>
+        <item>2018</item>
+    </string-array>
+
+    <string name="title_activity_student_landing_page">Student</string>
+
 </resources>
