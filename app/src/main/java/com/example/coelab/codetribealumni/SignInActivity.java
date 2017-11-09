@@ -47,6 +47,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         login.setOnClickListener(this);
         forgotPass.setOnClickListener(this);
         createAccount.setOnClickListener(this);
+
     }
 
     @Override
