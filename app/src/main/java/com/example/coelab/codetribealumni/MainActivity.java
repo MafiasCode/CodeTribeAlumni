@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
-    public void about_us (View view){
-        Intent intent = new Intent(this,AboutActivity.class);
-        startActivity(intent);
-    }
+    //public void about_us (View view){
+        //Intent intent = new Intent(this,AboutActivity.class);
+        //startActivity(intent);
+   // }
 }
