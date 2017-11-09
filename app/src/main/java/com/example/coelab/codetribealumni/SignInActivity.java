@@ -47,6 +47,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         login = (Button) findViewById(R.id.btnSignIn);
         forgotPass = (Button) findViewById(R.id.btnForgotPassword);
         createAccount = (Button) findViewById(R.id.btnCreateAccount);
+
         //setting onclick
         login.setOnClickListener(this);
         forgotPass.setOnClickListener(this);
@@ -87,13 +88,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                         FirebaseUser user = auth.getCurrentUser();
                         String[] token = mail.split("@");
-                        if(token[1].equalsIgnoreCase("mlab.co.za")){
-                            Intent intent = new Intent(getApplicationContext(),FacilitatorLandingPage.class);
+                        if(token[1].equalsIgnoreCase("mlab.co.za"))
+                        {
+                            Intent intent = new Intent(getApplicationContext(),FacilitatorActivity.class);
                             intent.putExtra("Id",user.getUid());
                             startActivity(intent);
                             dialog.dismiss();
                         }
                         else{
+
                             Intent intent = new Intent(getApplicationContext(),StudentLandingPage.class);
                             intent.putExtra("Id",user.getUid());
                             startActivity(intent);
@@ -115,8 +118,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
 
         }
-        else if(view == createAccount){
-
+        else if(view == createAccount)
+        {
+            dialog.dismiss();
+            Intent intent = new Intent(getBaseContext(),SignupActivity.class);
+            startActivity(intent);
         }
     }
 
