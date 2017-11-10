@@ -31,11 +31,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AboutActivity" />
         <activity
-            android:name=".FacilitatorActivity"
-            android:label="@string/title_activity_facilitator"
+            android:name=".StudentPage"
+            android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
-      <activity android:name=".FacilitatorLandingPage" />
     </application>
 
 </manifest>

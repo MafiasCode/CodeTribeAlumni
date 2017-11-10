@@ -96,7 +96,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 dialog.dismiss();
                             }
                             else{
-                                Intent intent = new Intent(getApplicationContext(),StudentLandingPage.class);
+                                Intent intent = new Intent(getApplicationContext(),StudentPage.class);
                                 intent.putExtra("Id",user.getUid());
                                 startActivity(intent);
                                 dialog.dismiss();
