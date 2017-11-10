@@ -33,7 +33,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle("");
         //progress dialog
         dialog = new ProgressDialog(this);
         dialog.setTitle("Signing in");
@@ -83,7 +83,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
 
                         FirebaseUser user = auth.getCurrentUser();
                         if(user.isEmailVerified()){
