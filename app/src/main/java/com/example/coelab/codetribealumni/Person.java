@@ -90,4 +90,18 @@ public class Person implements Serializable
     public void setYear(String year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", cell='" + cell + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", location='" + location + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }
