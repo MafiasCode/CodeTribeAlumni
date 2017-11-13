@@ -35,7 +35,7 @@ public class FacilitatorActivity extends AppCompatActivity
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar,0, 0);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
