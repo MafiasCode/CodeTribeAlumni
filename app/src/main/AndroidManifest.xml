@@ -13,25 +13,38 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignInActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ForgotPassword" />
         <activity
             android:name=".StudentLandingPage"
             android:label="@string/title_activity_student_landing_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AboutActivity" />
+
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".FacilitatorActivity"
+            android:label="@string/title_activity_facilitator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+      <activity android:name=".FacilitatorLandingPage" />
     </application>
 
 </manifest>
