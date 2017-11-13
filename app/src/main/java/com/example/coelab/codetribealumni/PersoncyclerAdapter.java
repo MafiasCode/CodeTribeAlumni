@@ -58,7 +58,7 @@ public class PersoncyclerAdapter extends RecyclerView.Adapter<PersoncyclerAdapte
 
             txtName = (TextView)itemView.findViewById(R.id.txtUsername);
             txtSurname = (TextView) itemView.findViewById(R.id.userSurname);
-            img_profile = (CircleImageView) itemView.findViewById(R.id.image_view);
+            //img_profile = (CircleImageView) itemView.findViewById(R.id.image_view);
         }
 
 
