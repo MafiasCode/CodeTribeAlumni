@@ -90,7 +90,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         if(user.isEmailVerified()){
                             String[] token = mail.split("@");
                             if(token[1].equalsIgnoreCase("mlab.co.za")){
-                                Intent intent = new Intent(getApplicationContext(),FacilitatorLandingPage.class);
+                                Intent intent = new Intent(getApplicationContext(),FacilitatorActivity.class);
                                 intent.putExtra("Id",user.getUid());
                                 startActivity(intent);
                                 dialog.dismiss();

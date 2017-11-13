@@ -20,20 +20,20 @@
         android:orientation="horizontal">
         <TextView
             android:layout_weight="1"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:gravity="right"
             android:text="Sign"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_weight="1"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:gravity="left"
             android:text="up"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_green_light"
+            android:textColor="@color/title_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -45,6 +45,7 @@
         android:drawableLeft="@drawable/ic_person_outline_black_24dp"
         android:drawablePadding="10dp"
         android:layout_marginLeft="40dp"
+        android:inputType="text"
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
@@ -52,6 +53,7 @@
     <EditText android:id="@+id/txtSurname"
         android:layout_marginRight="40dp"
         android:hint="Surname"
+        android:inputType="text"
         android:drawableLeft="@drawable/ic_person_outline_black_24dp"
         android:drawablePadding="10dp"
         android:layout_marginLeft="40dp"
@@ -65,6 +67,7 @@
         android:drawableLeft="@drawable/ic_phone_black_24dp"
         android:drawablePadding="10dp"
         android:layout_marginLeft="40dp"
+        android:inputType="phone"
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
@@ -129,11 +132,12 @@
 
     <Button android:id="@+id/signup"
         android:background="@drawable/buttonshape"
-        android:text="Sign up"
+        android:text="Sign Up"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="15dp"
+        android:textAllCaps="false"
         android:layout_marginRight="40dp"
         android:layout_height="wrap_content" />
 

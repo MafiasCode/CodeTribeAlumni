@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,14 +20,32 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class FacilitatorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+
     //Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     DrawerLayout drawer;
+
+    //===============Firebase Database
+    private FirebaseDatabase mdatabase;
+    private DatabaseReference myRef;
+    private ChildEventListener mChildEvenListener;
+
+    private ArrayList<PersonCycler> personList;
+    private RecyclerView recyclerView;
+    private PersoncyclerAdapter personAdapter;
+    //===============================================================
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +65,55 @@ public class FacilitatorActivity extends AppCompatActivity
         //Initializing firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        //viewcodetribers();
+
+        //testing=========================
+        mdatabase = FirebaseDatabase.getInstance();
+        myRef = mdatabase.getReference().child("Userprofiles");
+        recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        personList = new ArrayList<>();
+
+        mChildEvenListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
+                PersonCycler p = dataSnapshot.getValue(PersonCycler.class);
+                personList.add(p);
+
+                //Testing
+                personAdapter = new PersoncyclerAdapter(recyclerView.getContext(),personList);
+                recyclerView.setAdapter(personAdapter);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        myRef.addChildEventListener(mChildEvenListener);
+
+
     }
 
     @Override
@@ -118,4 +187,22 @@ public class FacilitatorActivity extends AppCompatActivity
         displaySelectedScreen(id);
         return true;
     }
+
+    /*Testing something
+    private void viewcodetribers()
+    {
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        final ArrayList<PersonCycler> personObj = new ArrayList<>();
+        personObj.add(new PersonCycler("Sarah","Mahlangu",R.drawable.pic1));
+        personObj.add(new PersonCycler("Mendie","Skosana",R.drawable.pic2));
+        personObj.add(new PersonCycler("Sarafinah","Nhlapho",R.drawable.pic4));
+
+        RecyclerView.Adapter adapter = new PersoncyclerAdapter(personObj);
+        recyclerView.setAdapter(adapter);
+
+
+    }*/
 }
