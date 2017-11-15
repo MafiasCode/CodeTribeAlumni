@@ -13,9 +13,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignInActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +31,7 @@
             android:name=".StudentLandingPage"
             android:label="@string/title_activity_student_landing_page"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
@@ -34,6 +39,14 @@
         <activity android:name=".AccomplishmentActivity" />
         <activity android:name=".CareerOpportunitiesActivity" />
         <activity android:name=".About_Us_Activity"></activity>
+
+
+        <activity
+            android:name=".FacilitatorActivity"
+            android:label="@string/title_activity_facilitator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+      <activity android:name=".FacilitatorLandingPage" />
     </application>
 
 </manifest>

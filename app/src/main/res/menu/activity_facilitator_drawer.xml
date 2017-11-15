@@ -12,22 +12,17 @@
             android:id="@+id/nav_view"
             android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:title="View codetribers" />
+
+        <item
+            android:id="@+id/nav_aboutus"
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="About us" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Logout" />
+
     </group>
-
-    <item android:title="">
-        <menu>
-
-            <item
-                android:id="@+id/nav_aboutus"
-                android:icon="@drawable/ic_help_black_24dp"
-                android:title="About us" />
-
-
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="Logout" />
-        </menu>
-    </item>
 
 </menu>
