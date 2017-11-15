@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +57,9 @@ public class StudentActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_student, menu);
-        return true;
+        MenuInflater in = getMenuInflater();
+        in.inflate(R.menu.search_menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -69,9 +70,6 @@ public class StudentActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
