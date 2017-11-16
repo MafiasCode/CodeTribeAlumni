@@ -14,6 +14,8 @@ public class ViewStudentInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student_info);
+        //Adding back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Person object
         Person p = (Person) getIntent().getSerializableExtra("Person");
         //finding views
