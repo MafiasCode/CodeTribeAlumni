@@ -1,6 +1,7 @@
 package com.example.coelab.codetribealumni;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -37,7 +39,7 @@ public class Tab2 extends Fragment {
     private ListView studentList;
     private DatabaseReference ref;
     FirebaseAuth auth;
-    ArrayList<Person> list;
+    ArrayList<Person> list = new ArrayList<>();
     String id,location;
     StudentAdapter adapter;
     @Nullable
@@ -45,10 +47,19 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab2,container,false);
         studentList = (ListView) view.findViewById(R.id.studList);
+        studentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Person p = list.get(i);
+                //Toast.makeText(getContext(), p.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(),ViewStudentInfo.class);
+                intent.putExtra("Person",p);
+                startActivity(intent);
+            }
+        });
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         id = user.getUid();
-        list = new ArrayList<>();
         ref = FirebaseDatabase.getInstance().getReference("Userprofiles").child(id);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -62,14 +73,11 @@ public class Tab2 extends Fragment {
                             @Override
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                                 Person person = dataSnapshot.getValue(Person.class);
-                                if(person != null){
-                                    if(person.getRole().equalsIgnoreCase("student") && person.getLocation().equalsIgnoreCase(location)){
-                                        list.add(person);
-                                        adapter = new StudentAdapter(getContext(),list);
-                                        studentList.setAdapter(adapter);
-                                    }
-                                    //ArrayAdapter<Person> adapter = new ArrayAdapter<Person>(getContext(),android.R.layout.simple_list_item_1,list);
+                                if(person.getRole().equalsIgnoreCase("student") && person.getLocation().equalsIgnoreCase(location) && person != null){
+                                    list.add(person);
                                 }
+                                adapter = new StudentAdapter(getContext(),list);
+                                studentList.setAdapter(adapter);
                             }
 
                             @Override
@@ -111,7 +119,6 @@ public class Tab2 extends Fragment {
         public StudentAdapter(@NonNull Context context, @NonNull List<Person> objects) {
             super(context, 0, objects);
         }
-
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

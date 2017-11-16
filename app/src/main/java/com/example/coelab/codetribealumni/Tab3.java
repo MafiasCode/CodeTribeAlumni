@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class Tab3 extends Fragment implements View.OnClickListener{
     private EditText proName,proLink;
     String name,link;
     private ListView proList;
+    ProjectAdapter adapter;
     String id;
     private Button addPro;
     FloatingActionButton fab;
@@ -69,15 +71,33 @@ public class Tab3 extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+        /*ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Project project = dataSnapshot.getValue(Project.class);
+                for(DataSnapshot snap:dataSnapshot.getChildren()){
+                    if(project != null){
+                        pros.add(project);
+                    }
+                }
+                ProjectAdapter adapter = new ProjectAdapter(getContext(),pros);
+                proList.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Project project = dataSnapshot.getValue(Project.class);
                 if(project != null){
                     pros.add(project);
-                    ProjectAdapter adapter = new ProjectAdapter(getContext(),pros);
-                    proList.setAdapter(adapter);
                 }
+                adapter = new ProjectAdapter(getContext(),pros);
+                proList.setAdapter(adapter);
                 //ArrayAdapter<Project> adapter = new ArrayAdapter<Project>(getContext(),android.R.layout.simple_list_item_1,pros);
             }
             @Override
