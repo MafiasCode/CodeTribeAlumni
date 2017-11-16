@@ -1,4 +1,5 @@
 package com.example.coelab.codetribealumni;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +59,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_student, menu);
+        getMenuInflater().inflate(R.menu.student_menu, menu);
         return true;
     }
 
@@ -70,6 +72,28 @@ public class StudentActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            return true;
+        }
+        if (id == R.id.accomp) {
+
+            Intent intent =   new Intent(this,AccomplishmentActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.career_opp) {
+            //Intent intent =   new Intent(this,CareerOpportunitiesActivity.class);
+            //startActivity(intent);
+            return true;
+        }
+        if (id == R.id.about_us) {
+            Intent intent = new Intent(this,About_Us_Activity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.exit) {
+            finish();
             return true;
         }
 
