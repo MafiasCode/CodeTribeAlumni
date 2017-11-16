@@ -114,7 +114,6 @@ public class SignupActivity extends Activity
 
                     Person person = new Person(name, surname,contact, gender,email, role,location,year);
                     myRef.child(id).setValue(person);
-
                 }
             }
         };
@@ -218,7 +217,7 @@ public class SignupActivity extends Activity
         {
             String sex = "Male";
         }
-        else if(role.equals("Female"))
+        else if(gender.equals("Female"))
         {
             String sex = "Female";
         }
@@ -291,7 +290,7 @@ public class SignupActivity extends Activity
         if (TextUtils.isEmpty(email))
         {
             dialog.dismiss();
-            edEmail.setText("Field must not be empty");
+            edEmail.setError("Field must not be empty");
             return;
         }
 
@@ -304,7 +303,6 @@ public class SignupActivity extends Activity
 
 
         //=========================================================
-
 
         //Checking if the emai its not empty
         if(TextUtils.isEmpty(useremail))
@@ -343,16 +341,6 @@ public class SignupActivity extends Activity
             }
         }
 
-        //Trying something out
-        if(role.equals("Student"))
-        {
-           //Intent intent
-        }
-        else if(role.equals("Facilitator"))
-        {
-            role = "Facilitator";
-        }
-        //===============================
         mAuth.createUserWithEmailAndPassword(useremail,userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
@@ -376,7 +364,6 @@ public class SignupActivity extends Activity
                             {
                                 Toast.makeText(SignupActivity.this, "Oops! something went wrong", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     });
                 }

@@ -1,13 +1,13 @@
 package com.example.coelab.codetribealumni;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,8 +31,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FacilitatorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -39,54 +47,72 @@ public class FacilitatorActivity extends AppCompatActivity
 
     //===============Firebase Database
     private FirebaseDatabase mdatabase;
-    private DatabaseReference myRef;
-    private ChildEventListener mChildEvenListener;
-
-    private ArrayList<PersonCycler> personList;
-    private RecyclerView recyclerView;
-    private PersoncyclerAdapter personAdapter;
+    private DatabaseReference myRef,databaseref;
+    private String uid;
+    private ListView listview;
+    private ArrayList<Person> studentList;
     //===============================================================
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facilitator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,0, 0);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Setting up the username and email of the user enetered to the navigation headers
+        View fView = navigationView.getHeaderView(0);
+        final TextView nav_name = fView.findViewById(R.id.txtUsername);
+        final TextView nav_email = fView.findViewById(R.id.txtUseremail);
 
         //Initializing firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-        //viewcodetribers();
-
-        //testing=========================
         mdatabase = FirebaseDatabase.getInstance();
-        myRef = mdatabase.getReference().child("Userprofiles");
-        recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        personList = new ArrayList<>();
 
-        mChildEvenListener = new ChildEventListener() {
+        listview = (ListView) findViewById(R.id.student_list);
+        studentList = new ArrayList<>();
+        uid = mFirebaseUser.getUid();
+        myRef = mdatabase.getReference().child("Userprofiles").child(uid);
+        databaseref = mdatabase.getReference().child("Userprofiles");
+
+       databaseref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
-                PersonCycler p = dataSnapshot.getValue(PersonCycler.class);
-                personList.add(p);
+                Person p = dataSnapshot.getValue(Person.class);
+                if(p.getRole().equals("Student"))
+                {
+                    studentList.add(p);
+                }
 
-                //Testing
-                personAdapter = new PersoncyclerAdapter(recyclerView.getContext(),personList);
-                recyclerView.setAdapter(personAdapter);
+                PersonAdapter adapter = new PersonAdapter(getBaseContext(),studentList);
+                listview.setAdapter(adapter);
+
+                //Trying to put a listener to a list view
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+                    {
+                        uid = mFirebaseUser.getUid();
+
+                        Person person = studentList.get(position);
+                        Intent intent = new Intent(getBaseContext(),ViewStudentProfileActivity.class);
+                        intent.putExtra("uid",uid);
+                        intent.putExtra("person",person);
+                        startActivity(intent);
+                    }
+                });
 
             }
 
@@ -109,10 +135,49 @@ public class FacilitatorActivity extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
+        });
 
-        myRef.addChildEventListener(mChildEvenListener);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Person personObj = dataSnapshot.getValue(Person.class);
 
+                if(personObj.getRole().equals("Student"))
+                {
+                    studentList.add(personObj);
+                }
+
+                PersonAdapter adapter = new PersonAdapter(getBaseContext(),studentList);
+                listview.setAdapter(adapter);
+
+                //Trying to put a listener to a list view
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+                    {
+                        uid = mFirebaseUser.getUid();
+
+                        Person person = studentList.get(position);
+                        Intent intent = new Intent(getBaseContext(),ViewStudentProfileActivity.class);
+                        intent.putExtra("uid",uid);
+                        startActivity(intent);
+                    }
+                });
+
+                if(personObj != null)
+                {
+                    String username = personObj.getName() + " " + personObj.getSurname();
+                    nav_name.setText(username);
+                    nav_email.setText(mFirebaseUser.getEmail());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -149,18 +214,20 @@ public class FacilitatorActivity extends AppCompatActivity
     {
         Fragment fragment = null;
 
+
         switch(id)
         {
             case R.id.nav_profile:
-                fragment = new ProfileActivity();
+                Intent intent = new Intent(getBaseContext(),ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_view:
-                fragment = new ViewCodetribersActivity();
+                startActivity(new Intent(getBaseContext(),FacilitatorActivity.class));
+                finish();
                 break;
             case R.id.nav_logout:
                 mFirebaseAuth.signOut();
-                Intent intent = new Intent(getBaseContext(),SignInActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getBaseContext(),SignInActivity.class));
                 finish();
                 break;
             case R.id.nav_aboutus:
@@ -188,21 +255,33 @@ public class FacilitatorActivity extends AppCompatActivity
         return true;
     }
 
-    /*Testing something
-    private void viewcodetribers()
+    //Inner class for adapter
+    private class PersonAdapter extends ArrayAdapter<Person>
     {
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        final ArrayList<PersonCycler> personObj = new ArrayList<>();
-        personObj.add(new PersonCycler("Sarah","Mahlangu",R.drawable.pic1));
-        personObj.add(new PersonCycler("Mendie","Skosana",R.drawable.pic2));
-        personObj.add(new PersonCycler("Sarafinah","Nhlapho",R.drawable.pic4));
+        public PersonAdapter(@NonNull Context context, @NonNull List<Person> objects) {
+            super(context, 0,objects);
+        }
 
-        RecyclerView.Adapter adapter = new PersoncyclerAdapter(personObj);
-        recyclerView.setAdapter(adapter);
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+        {
+            View view = convertView;
 
+            if(view == null)
+            {
+                view = LayoutInflater.from(getContext()).inflate(R.layout.recycler_items,parent,false);
 
-    }*/
+            }
+
+            Person p = getItem(position);
+            TextView name = view.findViewById(R.id.studentName);
+            TextView location = view.findViewById(R.id.studLocation);
+
+            name.setText(p.getName() + " " + p.getSurname());
+            location.setText(p.getLocation());
+            return view;
+        }
+    }
+
 }

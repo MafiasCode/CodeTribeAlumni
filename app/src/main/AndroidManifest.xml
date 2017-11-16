@@ -13,12 +13,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignInActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,25 +27,53 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ForgotPassword" />
         <activity
             android:name=".StudentLandingPage"
             android:label="@string/title_activity_student_landing_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AboutActivity" />
-
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FacilitatorActivity"
-            android:label="@string/title_activity_facilitator"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Facilitator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FacilitatorLandingPage" />
+        <activity
+            android:name=".ViewStudentProfileActivity"
+            android:label="@string/view_student"
+            android:parentActivityName=".FacilitatorActivity">
 
-      <activity android:name=".FacilitatorLandingPage" />
+            <!-- Parent activity meta-data to support 4.0 and lower-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FacilitatorActivity">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".ProfileActivity"
+            android:label="Profile"
+            android:parentActivityName=".FacilitatorActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FacilitatorActivity">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".ViewCodetribersActivity"
+            android:label=""
+            android:parentActivityName=".FacilitatorActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FacilitatorActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
