@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -71,46 +72,29 @@ public class Tab3 extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
-        /*ref.addValueEventListener(new ValueEventListener() {
+
+
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Project project = dataSnapshot.getValue(Project.class);
-                for(DataSnapshot snap:dataSnapshot.getChildren()){
-                    if(project != null){
-                        pros.add(project);
+                pros = new ArrayList<>();
+                for ( DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if ( snapshot.getValue() != null) {
+                        Project project = snapshot.getValue(Project.class);
+                        if (project != null) {
+                            pros.add(project);
+                        }
+
                     }
                 }
-                ProjectAdapter adapter = new ProjectAdapter(getContext(),pros);
+                adapter = new ProjectAdapter(getContext(), pros);
                 proList.setAdapter(adapter);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });*/
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Project project = dataSnapshot.getValue(Project.class);
-                if(project != null){
-                    pros.add(project);
-                }
-                adapter = new ProjectAdapter(getContext(),pros);
-                proList.setAdapter(adapter);
-                //ArrayAdapter<Project> adapter = new ArrayAdapter<Project>(getContext(),android.R.layout.simple_list_item_1,pros);
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
             }
         });
         return view;
@@ -130,7 +114,7 @@ public class Tab3 extends Fragment implements View.OnClickListener{
                     String name = appName.getText().toString().trim();
                     String link = appLink.getText().toString().trim();
                     String id = ref.push().getKey();
-                    Project p = new Project(name,link);
+                    Project p = new Project(id,name,link);
                     ref.child(id).setValue(p);
                 }
             });

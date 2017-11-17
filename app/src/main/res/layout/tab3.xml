@@ -11,7 +11,7 @@
         android:layout_gravity="right"
         app:backgroundTint="@color/colorPrimary"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_circle_outline_black_24dp"/>
+        android:src="@drawable/ic_create_black_24dp"/>
     <ListView android:id="@+id/listOfProjects"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"

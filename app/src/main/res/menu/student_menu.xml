@@ -12,6 +12,11 @@
         android:orderInCategory="100"
         android:title="@string/career_opp"
         app:showAsAction="never" />.
+    <item
+        android:id="@+id/work_experience"
+        android:orderInCategory="100"
+        android:title="@string/experience"
+        app:showAsAction="never" />.
 
     <item
         android:id="@+id/about_us"

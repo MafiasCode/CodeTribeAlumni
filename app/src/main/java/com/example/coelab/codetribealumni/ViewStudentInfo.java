@@ -1,7 +1,9 @@
 package com.example.coelab.codetribealumni;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -16,6 +18,7 @@ public class ViewStudentInfo extends AppCompatActivity {
         setContentView(R.layout.activity_view_student_info);
         //Adding back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Student information");
         //Person object
         Person p = (Person) getIntent().getSerializableExtra("Person");
         //finding views
@@ -36,6 +39,13 @@ public class ViewStudentInfo extends AppCompatActivity {
             location.setText(p.getLocation());
             year.setText(p.getYear());
         }
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), StudentActivity.class);
+        startActivity(myIntent);
+        return true;
 
     }
 }

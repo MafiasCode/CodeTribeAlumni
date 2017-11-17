@@ -37,14 +37,15 @@
             android:label="@string/title_activity_student"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AccomplishmentActivity" />
-        <activity android:name=".CareerOpportunitiesActivity" />
         <activity android:name=".About_Us_Activity" />
         <activity
             android:name=".FacilitatorActivity"
             android:label="@string/title_activity_facilitator"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FacilitatorLandingPage" />
-        <activity android:name=".ViewStudentInfo"></activity>
+        <activity android:name=".ViewStudentInfo" />
+        <activity android:name=".WorkExperience" />
+        <activity android:name=".AddExperience"></activity>
     </application>
 
 </manifest>
