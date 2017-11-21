@@ -9,9 +9,16 @@
     tools:showIn="@layout/app_bar_facilitator"
     android:id="@+id/content_facilitator">
 
-    <ListView
+    <!-- <ListView
         android:id="@+id/student_list"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/> -->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/facilitators"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

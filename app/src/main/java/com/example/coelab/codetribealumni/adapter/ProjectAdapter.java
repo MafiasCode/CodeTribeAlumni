@@ -1,4 +1,4 @@
-package com.example.coelab.codetribealumni.pojo;
+package com.example.coelab.codetribealumni.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,8 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.coelab.codetribealumni.R;
-
-import org.w3c.dom.Text;
+import com.example.coelab.codetribealumni.data.Project;
 
 import java.util.List;
 

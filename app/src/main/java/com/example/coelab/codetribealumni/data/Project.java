@@ -1,4 +1,4 @@
-package com.example.coelab.codetribealumni.pojo;
+package com.example.coelab.codetribealumni.data;
 
 /**
  * Created by Laser on 11/14/2017.
