@@ -52,7 +52,8 @@ public class Person implements Serializable
     public Person() {
     }
 
-    public Person(String name, String surname, String cell, String gender, String email, String role, String location, String year) {
+    public Person(String id,String name, String surname, String cell, String gender, String email, String role, String location, String year) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.cell = cell;
