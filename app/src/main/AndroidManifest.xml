@@ -60,7 +60,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".FacilitatorLandingPage" />
-        <activity android:name=".ViewStudentInfo"></activity>
+
+        <activity android:name=".ViewStudentInfo" />
+        <activity android:name=".WorkExperience" />
+        <activity android:name=".AddExperience"/>
 
         <activity
             android:name=".ViewStudentProfileActivity"
