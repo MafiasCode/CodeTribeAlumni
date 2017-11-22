@@ -42,7 +42,7 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
             view = LayoutInflater.from(getContext()).inflate(R.layout.project_layout,parent,false);
         }
         p = getItem(position);
-        ref = FirebaseDatabase.getInstance().getReference("Projects").child(p.getId());
+        ref = FirebaseDatabase.getInstance().getReference("Projects");
         TextView name = (TextView) view.findViewById(R.id.viewProName);
         name.setText(p.getProjectName());
         TextView link = (TextView) view.findViewById(R.id.viewProLink);
@@ -65,9 +65,10 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String name = appName.getText().toString().trim();
                         String link = appLink.getText().toString().trim();
+                        String ids = ref.push().getKey();
                         String id = p.getId();
                         Project p = new Project(id,name,link);
-                        ref.child(id).setValue(p);
+                        ref.child(ids).setValue(p);
                     }
                 });
                 dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

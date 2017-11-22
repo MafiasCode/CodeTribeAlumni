@@ -50,7 +50,7 @@ public class Tab3 extends Fragment implements View.OnClickListener{
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         id = user.getUid();
-        ref = FirebaseDatabase.getInstance().getReference("Projects").child(id);
+        ref = FirebaseDatabase.getInstance().getReference("Projects");
         fab = (FloatingActionButton) view.findViewById(R.id.btnAddProjects);
         proList = (ListView) view.findViewById(R.id.listOfProjects);
         /*proName = (EditText) view.findViewById(R.id.txtProjectName);
