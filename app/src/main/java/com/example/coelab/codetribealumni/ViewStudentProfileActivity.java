@@ -37,10 +37,14 @@ public class ViewStudentProfileActivity extends AppCompatActivity
         uid = intent.getStringExtra("uid");
         Person p =(Person) intent.getSerializableExtra("person");
 
-        name.setText(p.getName());
-        surname.setText(p.getSurname());
-        gender.setText(p.getGender());
-        contacts.setText(p.getCell());
-        email.setText(p.getEmail());
+        if (p != null){
+
+            name.setText(p.getName());
+            surname.setText(p.getSurname());
+            gender.setText(p.getGender());
+            contacts.setText(p.getCell());
+            email.setText(p.getEmail());
+        }
+
     }
 }
