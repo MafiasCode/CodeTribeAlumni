@@ -23,7 +23,5 @@ public class About_Us_Activity extends AppCompatActivity {
         txtDesc.setText("The app will feature curated capstone projects from CodeTribe alumni including apps on the Google Play Store. " +
                 "It will also display alumni accomplishments and profiles, career opportunities");
 
-
-
     }
 }
