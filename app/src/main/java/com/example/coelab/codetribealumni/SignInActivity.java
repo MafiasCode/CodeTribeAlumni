@@ -40,6 +40,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         dialog.setMessage("Please wait...");
         //FirebaseAuth
         auth = FirebaseAuth.getInstance();
+
         //finding views
         email = (EditText) findViewById(R.id.signInEmail);
         password = (EditText) findViewById(R.id.signInPassword);

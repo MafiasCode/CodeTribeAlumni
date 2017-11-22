@@ -1,4 +1,4 @@
-package com.example.coelab.codetribealumni.pojo;
+package com.example.coelab.codetribealumni.adapter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coelab.codetribealumni.R;
+import com.example.coelab.codetribealumni.data.Project;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

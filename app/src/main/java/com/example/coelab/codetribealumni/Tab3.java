@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.coelab.codetribealumni.pojo.Project;
-import com.example.coelab.codetribealumni.pojo.ProjectAdapter;
+import com.example.coelab.codetribealumni.data.Project;
+import com.example.coelab.codetribealumni.adapter.ProjectAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

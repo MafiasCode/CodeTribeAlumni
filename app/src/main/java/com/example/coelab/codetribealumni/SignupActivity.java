@@ -375,8 +375,6 @@ public class SignupActivity extends Activity
                 dialog.dismiss();
             }
         });
-
-
     }
 
     //Method for validating the email
