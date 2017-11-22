@@ -75,17 +75,18 @@
         android:id="@+id/stLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="Location"
-        android:layout_marginTop="4dp"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
+
     <TextView
         android:id="@+id/stYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="4dp"
+        android:gravity="center"
         android:text="Year"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
@@ -137,6 +138,7 @@
         android:layout_marginLeft="4dp"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
+
     <ListView android:id="@+id/projectList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -12,11 +12,25 @@
         tools:context="com.example.coelab.codetribealumni.ViewStudentProfileActivity"
         xmlns:tools="http://schemas.android.com/tools">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/profilepic"
+                android:layout_marginTop="10dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="125dp"
+                android:src="@drawable/blank_image1" />
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Personal Information"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:paddingLeft="15dp"
@@ -26,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_margin="6dp">
 
             <EditText android:id="@+id/txtName"
@@ -33,9 +48,9 @@
                 android:hint="Name"
                 android:textSize="15dp"
                 android:inputType="text"
-                android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/black"
+                android:layout_marginLeft="16dp"
+                android:enabled="false"
+                android:textColor="#424242"
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
 
@@ -44,9 +59,9 @@
                 android:hint="Surname"
                 android:textSize="15dp"
                 android:inputType="text"
-                android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="#424242"
+                android:enabled="false"
+                android:layout_marginLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
 
@@ -54,10 +69,10 @@
                 android:layout_marginRight="40dp"
                 android:hint="Gender"
                 android:inputType="textEmailAddress"
-                android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
+                android:enabled="false"
+                android:layout_marginLeft="16dp"
                 android:textSize="15dp"
-                android:textColor="@android:color/black"
+                android:textColor="#424242"
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
             <!-- Parent activity meta-data to support 4.0 and lower
@@ -87,11 +102,11 @@
             <EditText android:id="@+id/txtContactdetails"
                 android:layout_marginRight="40dp"
                 android:hint="Contact no"
-                android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:textSize="15dp"
+                android:enabled="false"
                 android:inputType="phone"
-                android:textColor="@android:color/black"
+                android:textColor="#424242"
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
 
@@ -99,10 +114,10 @@
                 android:layout_marginRight="40dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:textSize="15dp"
-                android:textColor="@android:color/black"
+                android:enabled="false"
+                android:textColor="#424242"
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
             <!-- Parent activity meta-data to support 4.0 and lower
@@ -132,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Qualifications"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:paddingLeft="15dp"
@@ -146,6 +161,96 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/profile_list"
+                    android:scrollbars="vertical">
+                </ListView>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Accomplishments"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:textColor="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/accomplish_list"
+                    android:scrollbars="vertical">
+                </ListView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Career Opportunities"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:textColor="#000000"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/career_list"
+                    android:scrollbars="vertical">
+                </ListView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Work Experiences"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:textColor="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/work_list"
+                    android:scrollbars="vertical">
+                </ListView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Projects"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:textColor="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/project_list"
                     android:scrollbars="vertical">
                 </ListView>
             </LinearLayout>

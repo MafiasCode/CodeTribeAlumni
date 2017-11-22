@@ -111,8 +111,7 @@ public class SignupActivity extends Activity
                     location = locationSpinner.getSelectedItem().toString();
                     role = rolePinner.getSelectedItem().toString();
                     year = yearSpinner.getSelectedItem().toString();
-
-                    Person person = new Person(name, surname,contact, gender,email, role,location,year);
+                    Person person = new Person(mAuth.getCurrentUser().getUid(),name, surname,contact, gender,email, role,location,year);
                     myRef.child(id).setValue(person);
                 }
             }
@@ -376,8 +375,6 @@ public class SignupActivity extends Activity
                 dialog.dismiss();
             }
         });
-
-
     }
 
     //Method for validating the email

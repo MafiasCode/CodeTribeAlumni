@@ -1,10 +1,11 @@
-package com.example.coelab.codetribealumni.pojo;
+package com.example.coelab.codetribealumni.data;
 
 /**
  * Created by Laser on 11/14/2017.
  */
 
 public class Project {
+    private String id;
     private String projectName;
     private String projectLink;
 
@@ -12,9 +13,10 @@ public class Project {
 
     }
 
-    public Project(String projectName, String projectLink) {
+    public Project(String id,String projectName, String projectLink) {
         this.projectName = projectName;
         this.projectLink = projectLink;
+        this.id = id;
     }
 
     public String getProjectName() {
@@ -31,6 +33,14 @@ public class Project {
 
     public void setProjectLink(String projectLink) {
         this.projectLink = projectLink;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

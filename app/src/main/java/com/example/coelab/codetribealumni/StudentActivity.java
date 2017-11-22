@@ -40,6 +40,7 @@ public class StudentActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -52,7 +53,6 @@ public class StudentActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
 
@@ -96,7 +96,11 @@ public class StudentActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
+        if(id == R.id.work_experience){
+            Intent intent = new Intent(this,WorkExperience.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -160,11 +164,11 @@ public class StudentActivity extends AppCompatActivity {
             }
             return null;
         }
-
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 3;
         }
     }
+
 }
