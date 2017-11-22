@@ -1,6 +1,7 @@
 package com.example.coelab.codetribealumni;
 
 import android.content.Context;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import com.example.coelab.codetribealumni.adapter.PersonAdapter;
+import com.example.coelab.codetribealumni.data.Project;
 import com.example.coelab.codetribealumni.utils.RecyclerItemClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,15 +51,16 @@ public class FacilitatorActivity extends AppCompatActivity
     //Firebase instance variables
     private FirebaseUser mFirebaseUser;
 
-    //====Firebase Database
+    //Firebase Database
     private FirebaseDatabase mdatabase;
     private DatabaseReference myRef,databaseref;
 
     private String uid;
     private ArrayList<Person> studentList;
-    private Person person;
+    private ArrayList<String> studentListIds;
     private ImageView profileImage;
     private PersonAdapter adapter;
+
     Context context;
 
     @Override
@@ -74,10 +77,12 @@ public class FacilitatorActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
         //Setting up the username and email of the user enetered to the navigation headers
         nav_name = navigationView.getHeaderView(0).findViewById(R.id.txtUsername);
         nav_email = navigationView.getHeaderView(0).findViewById(R.id.txtUseremail);
 
+        //RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -85,10 +90,11 @@ public class FacilitatorActivity extends AppCompatActivity
 
             @Override
             public void onItemClick(View view, int position, float x, float y) {
-
                 Person person = studentList.get(position);
+                String uuid = studentListIds.get(position);
                 Intent intent = new Intent(context, ViewStudentProfileActivity.class);
                 intent.putExtra(ViewStudentProfileActivity.profile_object, person);
+                intent.putExtra(ViewStudentProfileActivity.profile_uuid, uuid);
                 startActivity(intent);
             }
         }));
@@ -97,18 +103,19 @@ public class FacilitatorActivity extends AppCompatActivity
         //Initializing firebase
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mdatabase = FirebaseDatabase.getInstance();
-
-        studentList = new ArrayList<>();
         uid = mFirebaseUser.getUid();
 
         myRef = mdatabase.getReference().child("Userprofiles").child(uid);
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+        if (user != null)
+        {
 
         } else {
             // Navigate to MainActivity
+            Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+            startActivity(intent);
         }
 
         databaseref = mdatabase.getReference().child("Userprofiles");
@@ -116,13 +123,14 @@ public class FacilitatorActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 studentList = new ArrayList<>();
+                studentListIds = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getValue() != null) {
-
                         Person person = snapshot.getValue(Person.class);
                         if ("Student".equals(person.getRole())) {
                             Log.i("Sarah", snapshot.toString());
                             studentList.add(person);
+                            studentListIds.add(snapshot.getKey());
                         }
                     }
                 }
@@ -132,7 +140,8 @@ public class FacilitatorActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError)
+            {
 
             }
         });
@@ -145,9 +154,6 @@ public class FacilitatorActivity extends AppCompatActivity
 
                 if (dataSnapshot.getValue() != null) {
                     Person personObj = dataSnapshot.getValue(Person.class);
-//                    if (personObj.getRole().equals("Student")) {
-//                        studentList.add(personObj);
-//                    }
                     String username = personObj.getName() + " " + personObj.getSurname();
                     nav_name.setText(username);
                     nav_email.setText(mFirebaseUser.getEmail());
@@ -155,15 +161,10 @@ public class FacilitatorActivity extends AppCompatActivity
 
                 }
 
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
-
         });
-
     }
 
     @Override
@@ -207,9 +208,6 @@ public class FacilitatorActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
@@ -258,33 +256,4 @@ public class FacilitatorActivity extends AppCompatActivity
         return true;
     }
 
-    //Inner class for adapter
-    /*
-    private class PersonAdapter extends ArrayAdapter<Person>
-    {
-        public PersonAdapter(@NonNull Context context, @NonNull List<Person> objects) {
-            super(context, 0,objects);
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-        {
-            View view = convertView;
-
-            if(view == null)
-            {
-                view = LayoutInflater.from(getContext()).inflate(R.layout.recycler_items,parent,false);
-            }
-
-            Person p = getItem(position);
-            TextView name = view.findViewById(R.id.studentName);
-            TextView location = view.findViewById(R.id.studLocation);
-
-            name.setText(p.getName() + " " + p.getSurname());
-            location.setText(p.getLocation());
-            return view;
-        }
-    }
-    */
 }

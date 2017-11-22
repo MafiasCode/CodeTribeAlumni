@@ -10,14 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_gravity="bottom"
-        android:text="Project name"
+        android:hint="Project name"
         android:id="@+id/txtprojectName"
         android:textColor="@android:color/black"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:hint="Project link"
-        android:id="@+id/edprojectLink"
+        android:layout_gravity="bottom"
+        android:id="@+id/txtprojectLink"
         android:textColor="@android:color/black"/>
 </LinearLayout>

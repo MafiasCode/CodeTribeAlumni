@@ -1,10 +1,13 @@
 package com.example.coelab.codetribealumni.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Laser on 11/14/2017.
  */
 
-public class Project {
+public class Project implements Serializable
+{
     private String id;
     private String projectName;
     private String projectLink;
