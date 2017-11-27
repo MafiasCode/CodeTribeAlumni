@@ -24,13 +24,10 @@
     <string-array name="year">
         <item>Select year</item>
         <item>2018</item>
-        <item>2017</item>
-        <item>2016</item>
-        <item>2015</item>
     </string-array>
 
     <string name="title_activity_student_landing_page">Student</string>
-    <string name="title_activity_facilitator">Facilitator</string>
+    <string name="title_activity_facilitator">Codetribe students</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

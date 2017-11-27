@@ -67,7 +67,7 @@
 
         <activity
             android:name=".ViewStudentProfileActivity"
-            android:label="@string/view_student"
+            android:label="Student Profile"
             android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".FacilitatorActivity">
 

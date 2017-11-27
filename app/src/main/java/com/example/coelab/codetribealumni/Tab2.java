@@ -61,7 +61,8 @@ public class Tab2 extends Fragment {
         FirebaseUser user = auth.getCurrentUser();
         id = user.getUid();
         ref = FirebaseDatabase.getInstance().getReference("Userprofiles").child(id);
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Person p = dataSnapshot.getValue(Person.class);

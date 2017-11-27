@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -28,6 +29,7 @@ import com.example.coelab.codetribealumni.adapter.RecyclerViewExperienceAdapter;
 import com.example.coelab.codetribealumni.adapter.RecyclerViewProjectAdapter;
 import com.example.coelab.codetribealumni.data.Project;
 import com.example.coelab.codetribealumni.pojo.Experience;
+import com.example.coelab.codetribealumni.utils.RecyclerItemClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -49,30 +51,30 @@ public class ViewStudentProfileActivity extends AppCompatActivity
     private EditText name,surname,gender,email,contacts;
 
     //Firebase
-    private FirebaseUser user;
     private DatabaseReference databaseReference;
-    private DatabaseReference experienceReference;
-    private DatabaseReference projectsReference;
-    private FirebaseAuth mFirebaseAuth;
     private ArrayList<Project> projects_list;
     private ArrayList<Experience> experience_list;
     private RecyclerViewExperienceAdapter experinceAdapter;
     private RecyclerViewProjectAdapter projectAdapter;
-    private ProjectsAdapter adapterprojects;
+    //private ProjectsAdapter adapterprojects; just now now
     Person person;
     RecyclerView.LayoutManager layoutManager;
 
     //Declare for the project listview
     private TextView txtProjectname,edLink;
-    RecyclerView worklist;
-    private ListView project_listview;
+    RecyclerView worklist,project_listview;
+    //private ListView project_listview; just now now
     String uuid;
+
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student_profile);
+        context = getBaseContext();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
         //Making the image view to be round
         ImageView profileImage = findViewById(R.id.profilepic);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.blank_image1);
@@ -88,18 +90,26 @@ public class ViewStudentProfileActivity extends AppCompatActivity
         contacts = findViewById(R.id.txtContactdetails);
 
         //The work experience list view fields
-        project_listview = findViewById(R.id.project_list);
         worklist = findViewById(R.id.work_list);
         layoutManager = new LinearLayoutManager(this);
         worklist.setLayoutManager(layoutManager);
         worklist.setHasFixedSize(true);
 
-        /*Finding the recyclerview for the project
+        //Finding the recyclerview for the project
         project_listview = findViewById(R.id.project_list);
         layoutManager = new LinearLayoutManager(this);
         project_listview.setLayoutManager(layoutManager);
-        project_listview.setHasFixedSize(true);*/
-
+        project_listview.setHasFixedSize(true);
+        project_listview.addOnItemTouchListener(new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, float x, float y)
+            {
+                Project project = projects_list.get(position);
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(project.getProjectLink()));
+                startActivity(intent);
+            }
+        }));
 
         txtProjectname = findViewById(R.id.txtprojectName);
         edLink = findViewById(R.id.txtprojectLink);
@@ -128,7 +138,7 @@ public class ViewStudentProfileActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 experience_list = new ArrayList<>();
-                Log.i("Like OMG", dataSnapshot.toString());
+                Log.i(" OMG", dataSnapshot.toString());
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     if (snapshot.getValue() != null) {
@@ -165,8 +175,8 @@ public class ViewStudentProfileActivity extends AppCompatActivity
                         }
                 }
 
-                adapterprojects = new ProjectsAdapter(getApplicationContext(),projects_list);
-                project_listview.setAdapter(adapterprojects);
+                projectAdapter = new RecyclerViewProjectAdapter(projects_list);
+                project_listview.setAdapter(projectAdapter);
 
                 }
 
