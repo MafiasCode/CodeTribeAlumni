@@ -101,6 +101,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 Intent intent = new Intent(getApplicationContext(),StudentActivity.class);
                                 intent.putExtra("Id",user.getUid());
                                 startActivity(intent);
+                                Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
                             }
                         }
