@@ -14,18 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-<<<<<<< HEAD
 import android.widget.EditText;
-=======
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,28 +31,56 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
-
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
 /**
  * Created by Laser on 11/13/2017.
  */
 
-public class Tab1 extends Fragment implements View.OnClickListener{
-    private EditText name,surname,cellphone,email,txtGender,txtRole,txtLocation,txtYear;
-    private AppCompatSpinner gender,year,role,location;
+public class Tab1 extends Fragment implements View.OnClickListener
+{
+    private EditText name, surname, cellphone, email, txtGender, txtRole, txtLocation, txtYear;
+    private AppCompatSpinner gender, year, role, location;
     private FirebaseAuth auth;
     private DatabaseReference ref;
     private FloatingActionButton edit;
+
+   /* EditText edt_name;
+    EditText edt_surname;
+    EditText edt_mobile;
+    EditText edt_email;
+    EditText edt_role;
+    EditText edt_year;
+    Spinner spn_location;
+    Spinner spn_gender;
+    Button btn_updateProfile;
+
+    EditText name;
+    String surname;
+    String contact;
+    String email;
+    String password;
+    String gender;
+    String location;
+    String year;
+    String role;
+    private String uid;
+    private Person person;*/
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ChildEventListener childEventListener;
+    private FirebaseUser firebaseUser;
+
+
     String id;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1,container,false);
+        View view = inflater.inflate(R.layout.tab1, container, false);
         //find views
         edit = (FloatingActionButton) view.findViewById(R.id.btnEditPros);
         edit.setOnClickListener(this);
@@ -78,7 +104,7 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Person p = dataSnapshot.getValue(Person.class);
-                if(p != null){
+                if (p != null) {
                     name.setText(p.getName());
                     surname.setText(p.getSurname());
                     cellphone.setText(p.getCell());
@@ -91,9 +117,8 @@ public class Tab1 extends Fragment implements View.OnClickListener{
                     role.setVisibility(View.GONE);
                     year.setVisibility(View.GONE);
                     location.setVisibility(View.GONE);
-                }
-                else{
-                    Toast.makeText(getContext(),"Empty",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Empty", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -107,7 +132,7 @@ public class Tab1 extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view == edit){
+        if (view == edit) {
             //Toast.makeText(getContext(), "Editable", Toast.LENGTH_SHORT).show();
             name.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
             surname.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
@@ -121,50 +146,27 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             role.setVisibility(View.VISIBLE);
             year.setVisibility(View.VISIBLE);
             location.setVisibility(View.VISIBLE);
-            String[] genders = {"Choose gender","Male","Female"};
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,genders);
+            String[] genders = {"Choose gender", "Male", "Female"};
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, genders);
             gender.setAdapter(adapter1);
-            String[] roles = {"Choose role","Facilitator","Student"};
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,roles);
+            String[] roles = {"Choose role", "Facilitator", "Student"};
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, roles);
             role.setAdapter(adapter2);
-            String[] years = {"Choose year","2017","2018","2019","2020","2021","2022"};
-            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,years);
+            String[] years = {"Choose year", "2017", "2018", "2019", "2020", "2021", "2022"};
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, years);
             year.setAdapter(adapter3);
-            String[] locations = {"Choose location","Tshwane","Alexandra","Soweto","Tembisa"};
-            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,locations);
+            String[] locations = {"Choose location", "Tshwane", "Alexandra", "Soweto", "Tembisa"};
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, locations);
             location.setAdapter(adapter4);
 
-<<<<<<< HEAD
         }
-=======
-    EditText edt_name;
-    EditText edt_surname;
-    EditText edt_mobile;
-    EditText edt_email;
-    EditText edt_role;
-    EditText edt_year;
-    Spinner spn_location;
-    Spinner spn_gender;
-    Button btn_updateProfile;
+    }
 
-    String name,surname,contact,email,password,gender,location,year,role;
-    private String uid;
-    private Person person;
+        /*public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+        {
+            View view = inflater.inflate(R.layout.activity_profile, container, false);
 
-    private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private ChildEventListener childEventListener;
-    private FirebaseUser firebaseUser;
-
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_profile, container, false);
-
-        //Initialize the view
+            //Initialize the view
         /*
         edt_name = (EditText) view.findViewById(R.id.txt_name);
         edt_surname = (EditText) view.findViewById(R.id.txt_surname);
@@ -237,18 +239,18 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             }
         });
 
-        name = edt_name.getText().toString();*/
+        name = edt_name.getText().toString();
 
 
-        //updateUserProfile();
+            //updateUserProfile();
 
-        return view;
-    }
+            return view;
+        }*/
 
-    private void updateUserProfile(String name, String surname, String mobile ){
+    private void updateUserProfile(String name, String surname, String mobile)
+    {
 
         databaseReference.child("name").setValue("tharoll");
 
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
     }
 }

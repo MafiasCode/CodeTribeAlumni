@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.example.coelab.codetribealumni.pojo.Experience;
 import com.example.coelab.codetribealumni.pojo.ExperienceAdapter;
-import com.example.coelab.codetribealumni.pojo.Project;
-import com.example.coelab.codetribealumni.pojo.ProjectAdapter;
+import com.example.coelab.codetribealumni.data.Project;
+import com.example.coelab.codetribealumni.adapter.ProjectAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
