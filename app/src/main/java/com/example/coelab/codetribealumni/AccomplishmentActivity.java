@@ -1,30 +1,31 @@
 package com.example.coelab.codetribealumni;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
-public class AccomplishmentActivity extends AppCompatActivity {
-    private ListView accList;
-    private FloatingActionButton addAcc;
+public class AccomplishmentActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private FloatingActionButton addAccomp;
+    private ListView experienceList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accomplishment);
-        setTitle("Accomplishments");
-        addAcc = (FloatingActionButton) findViewById(R.id.btnAddAccomplishments);
-        accList = (ListView) findViewById(R.id.listOfAcc);
-        addAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext());
-                dialog.setTitle("Add accomplishment");
-                dialog.show();
-            }
-        });
+
+        addAccomp = (FloatingActionButton) findViewById(R.id.addExperience);
+        addAccomp.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v ==addAccomp){
+            startActivity(new Intent(getApplicationContext(),AddAccomplishment.class));
+        }
     }
 }
