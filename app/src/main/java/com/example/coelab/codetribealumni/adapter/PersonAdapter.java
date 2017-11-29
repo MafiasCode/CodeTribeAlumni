@@ -1,11 +1,16 @@
 package com.example.coelab.codetribealumni.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coelab.codetribealumni.Person;
@@ -31,15 +36,17 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(mFilteredList.get(position).getName());
-        holder.location.setText(mFilteredList.get(position).getLocation());
+    public void onBindViewHolder(ViewHolder holder, int position)
+    {
+        holder.name.setText(mFilteredList.get(position).getName() +  " " + mFilteredList.get(position).getSurname());
+        holder.gender.setText(mFilteredList.get(position).getGender());
     }
 
     @Override
@@ -64,7 +71,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
 
                     for (Person person : mArrayList) {
 
-                        if (person.getName().toLowerCase().contains(charString) || person.getLocation().toLowerCase().contains(charString) ) {
+                        if (person.getName().toLowerCase().contains(charString) || person.getLocation().toLowerCase().contains(charString) || person.getSurname().toLowerCase().contains(charString)) {
 
                             filteredList.add(person);
                         }
@@ -86,10 +93,11 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         };
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
 
         @BindView(R.id.studentName) TextView name;
-        @BindView(R.id.studLocation) TextView location;
+        @BindView(R.id.studGender) TextView gender;
 
         public ViewHolder(View itemView) {
             super(itemView);

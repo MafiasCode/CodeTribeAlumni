@@ -16,6 +16,7 @@ public class Person implements Serializable
     private String role;
     private String location;
     private String year;
+    private int profileimage;
 
     private boolean disability;
     private String countryOfBirth;
@@ -242,5 +243,13 @@ public class Person implements Serializable
     public String getQualifYearObtained()
     {
         return qualifYearObtained;
+    }
+
+    public int getProfileimage() {
+        return profileimage;
+    }
+
+    public void setProfileimage(int profileimage) {
+        this.profileimage = profileimage;
     }
 }

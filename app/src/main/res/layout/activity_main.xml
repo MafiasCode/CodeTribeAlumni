@@ -42,6 +42,7 @@
         android:src="@drawable/logo"
         android:layout_height="100dp"
         android:layout_weight="0.17"
+        android:src="@drawable/logo"
         />
 
     <Button

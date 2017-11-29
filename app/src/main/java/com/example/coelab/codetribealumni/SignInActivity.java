@@ -66,7 +66,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         dialog.show();
-        if(view == login){
+        if(view == login)
+        {
             mail = email.getText().toString().trim();
             pass = password.getText().toString().trim();
             if(TextUtils.isEmpty(mail)){
@@ -118,13 +119,16 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
         }
-        else if(view == forgotPass){
-
+        else if(view == forgotPass)
+        {
+            dialog.dismiss();
             Intent intent = new Intent(this, ForgotPassword.class);
             startActivity(intent);
 
         }
-        else if(view == createAccount){
+        else if(view == createAccount)
+        {
+            dialog.dismiss();
             startActivity(new Intent(getApplicationContext(),SignupActivity.class));
         }
     }

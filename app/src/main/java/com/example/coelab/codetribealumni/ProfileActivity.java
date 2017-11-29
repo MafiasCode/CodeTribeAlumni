@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -89,7 +91,6 @@ public class ProfileActivity extends AppCompatActivity
         setContentView(R.layout.activity_profile);
 
         //Initialize the view
-        img_profileUpload = (ImageView)findViewById(R.id.profile_update_image);
         edt_name = (EditText) findViewById(R.id.txt_profile_name);
         edt_surname = (EditText) findViewById(R.id.txt_profile_surname);
         edt_mobile = (EditText) findViewById(R.id.txt_profile_phoneNo);
@@ -102,7 +103,12 @@ public class ProfileActivity extends AppCompatActivity
 
         btn_updateProfile = (Button)findViewById(R.id.update_profile);
 
-
+        //Making the profile pic round
+        img_profileUpload = (ImageView)findViewById(R.id.profile_update_image);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.blank_image1);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(),bitmap);
+        roundedBitmapDrawable.setCircular(true);
+        img_profileUpload.setImageDrawable(roundedBitmapDrawable);
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -169,7 +175,7 @@ public class ProfileActivity extends AppCompatActivity
             }
         });
 
-       final  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /* final  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,7 +193,7 @@ public class ProfileActivity extends AppCompatActivity
 
                 fab.setVisibility(View.INVISIBLE);
             }
-        });
+        });*/
 
         // Retrieve information from firebase and load it on edittext
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -250,8 +256,6 @@ public class ProfileActivity extends AppCompatActivity
         btn_updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 name = edt_name.getText().toString();
                 surname = edt_surname.getText().toString();
@@ -316,7 +320,7 @@ public class ProfileActivity extends AppCompatActivity
                 }
 
                 btn_updateProfile.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.VISIBLE);
+                //fab.setVisibility(View.VISIBLE);
 
                 Toast.makeText(ProfileActivity.this, "Updated Succesfully", Toast.LENGTH_SHORT).show();
             }
