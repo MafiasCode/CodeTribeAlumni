@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/colorPrimary">
+            >
 
             <ImageView
                 android:id="@+id/profile_update_image"
@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+
             />
         <!--android:editable="false" -->
         <TextView
@@ -71,6 +72,7 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="40dp"
             android:text="Mobile No"/>
+
         <EditText
             android:id="@+id/txt_profile_phoneNo"
             android:layout_width="match_parent"
@@ -114,21 +116,31 @@
 
             />
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spn_gender"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:hint="Male" />
+            android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spn_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:hint="pta" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:hint="Male" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:hint="pta" />
+        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/update_profile"

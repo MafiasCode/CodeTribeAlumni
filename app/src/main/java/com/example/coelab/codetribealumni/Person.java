@@ -17,6 +17,8 @@ public class Person implements Serializable
     private String location;
     private String year;
 
+
+
     private boolean disability;
     private String countryOfBirth;
     private String id;
@@ -30,9 +32,10 @@ public class Person implements Serializable
     private String startDate;
     private String endDate;
     private String qualifYearObtained;
+    private String photoUrl;
 
-
-    public Person(boolean disability, String countryOfBirth, String id, int age, String qualification, String qualificationDescription, String institution, boolean employementStatus, String companyName, String duties, String startDate, String endDate, String qualifYearObtained)
+    public Person(boolean disability, String countryOfBirth, String id, int age, String qualification, String qualificationDescription, String institution, boolean employementStatus
+            , String companyName, String duties, String startDate, String endDate, String qualifYearObtained, String photoUrl )
     {
         this.disability = disability;
         this.countryOfBirth = countryOfBirth;
@@ -47,6 +50,7 @@ public class Person implements Serializable
         this.startDate = startDate;
         this.endDate = endDate;
         this.qualifYearObtained = qualifYearObtained;
+        this.photoUrl = photoUrl;
     }
 
     public Person() {
@@ -62,6 +66,7 @@ public class Person implements Serializable
         this.role = role;
         this.location = location;
         this.year = year;
+
     }
     public String getName() {
         return name;
@@ -85,7 +90,8 @@ public class Person implements Serializable
 
     public String getRole() {
         return role;
-    }public String getLocation() {
+    }
+    public String getLocation() {
     return location;
 }
     public String getYear() {
@@ -122,6 +128,14 @@ public class Person implements Serializable
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     @Override

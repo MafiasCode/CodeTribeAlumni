@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.coelab.codetribealumni.ViewStudentInfo">
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Person details"
+    android:gravity="center"
+    android:textStyle="bold"
+    android:layout_marginLeft="4dp"
+    android:textColor="@android:color/black"
+    android:textSize="15dp" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <TextView
+        android:id="@+id/stNames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:text="Names"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/stGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Gender"
+        android:layout_marginTop="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/stRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Role"
+        android:layout_marginTop="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/stCell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Cellphone"
+        android:layout_marginTop="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/stEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Email"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/stLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Location"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/stYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Year"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accomplishments"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <ListView android:id="@+id/accomplishmentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Career opportunities"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <ListView android:id="@+id/careerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Projects"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <ListView android:id="@+id/projectList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Employment"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+    <ListView android:id="@+id/employmentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+</ScrollView>
