@@ -45,7 +45,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
-        holder.name.setText(mFilteredList.get(position).getName());
+        holder.name.setText(mFilteredList.get(position).getName() +  " " + mFilteredList.get(position).getSurname());
         holder.gender.setText(mFilteredList.get(position).getGender());
     }
 
@@ -71,7 +71,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
 
                     for (Person person : mArrayList) {
 
-                        if (person.getName().toLowerCase().contains(charString) || person.getLocation().toLowerCase().contains(charString) ) {
+                        if (person.getName().toLowerCase().contains(charString) || person.getLocation().toLowerCase().contains(charString) || person.getSurname().toLowerCase().contains(charString)) {
 
                             filteredList.add(person);
                         }
