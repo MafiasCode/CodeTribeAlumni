@@ -14,15 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-<<<<<<< HEAD
 import android.widget.EditText;
-=======
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,29 +29,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
-
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
 /**
  * Created by Laser on 11/13/2017.
  */
 
-public class Tab1 extends Fragment implements View.OnClickListener{
-    private EditText name,surname,cellphone,email,txtGender,txtRole,txtLocation,txtYear;
-    private AppCompatSpinner gender,year,role,location;
+public class Tab1 extends Fragment implements View.OnClickListener {
+    private EditText name, surname, cellphone, email, txtGender, txtRole, txtLocation, txtYear;
+    private AppCompatSpinner gender, year, role, location;
     private FirebaseAuth auth;
     private DatabaseReference ref;
     private FloatingActionButton edit;
     String id;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1,container,false);
+        View view = inflater.inflate(R.layout.tab1, container, false);
         //find views
         edit = (FloatingActionButton) view.findViewById(R.id.btnEditPros);
         edit.setOnClickListener(this);
@@ -78,7 +71,7 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Person p = dataSnapshot.getValue(Person.class);
-                if(p != null){
+                if (p != null) {
                     name.setText(p.getName());
                     surname.setText(p.getSurname());
                     cellphone.setText(p.getCell());
@@ -91,9 +84,8 @@ public class Tab1 extends Fragment implements View.OnClickListener{
                     role.setVisibility(View.GONE);
                     year.setVisibility(View.GONE);
                     location.setVisibility(View.GONE);
-                }
-                else{
-                    Toast.makeText(getContext(),"Empty",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Empty", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -107,7 +99,7 @@ public class Tab1 extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view == edit){
+        if (view == edit) {
             //Toast.makeText(getContext(), "Editable", Toast.LENGTH_SHORT).show();
             name.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
             surname.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
@@ -121,134 +113,19 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             role.setVisibility(View.VISIBLE);
             year.setVisibility(View.VISIBLE);
             location.setVisibility(View.VISIBLE);
-            String[] genders = {"Choose gender","Male","Female"};
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,genders);
+            String[] genders = {"Choose gender", "Male", "Female"};
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, genders);
             gender.setAdapter(adapter1);
-            String[] roles = {"Choose role","Facilitator","Student"};
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,roles);
+            String[] roles = {"Choose role", "Facilitator", "Student"};
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, roles);
             role.setAdapter(adapter2);
-            String[] years = {"Choose year","2017","2018","2019","2020","2021","2022"};
-            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,years);
+            String[] years = {"Choose year", "2017", "2018", "2019", "2020", "2021", "2022"};
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, years);
             year.setAdapter(adapter3);
-            String[] locations = {"Choose location","Tshwane","Alexandra","Soweto","Tembisa"};
-            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,locations);
+            String[] locations = {"Choose location", "Tshwane", "Alexandra", "Soweto", "Tembisa"};
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, locations);
             location.setAdapter(adapter4);
-
-<<<<<<< HEAD
         }
-=======
-    EditText edt_name;
-    EditText edt_surname;
-    EditText edt_mobile;
-    EditText edt_email;
-    EditText edt_role;
-    EditText edt_year;
-    Spinner spn_location;
-    Spinner spn_gender;
-    Button btn_updateProfile;
 
-    String name,surname,contact,email,password,gender,location,year,role;
-    private String uid;
-    private Person person;
-
-    private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private ChildEventListener childEventListener;
-    private FirebaseUser firebaseUser;
-
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_profile, container, false);
-
-        //Initialize the view
-        /*
-        edt_name = (EditText) view.findViewById(R.id.txt_name);
-        edt_surname = (EditText) view.findViewById(R.id.txt_surname);
-        edt_mobile = (EditText) view.findViewById(R.id.txt_mobileno);
-        edt_email = (EditText)view.findViewById(R.id.txt_email);
-        edt_role = (EditText)view.findViewById(R.id.txt_role);
-        edt_year = (EditText)view.findViewById(R.id.txt_year);
-        spn_gender = (Spinner)view.findViewById(R.id.spn_gender);
-        spn_location = (Spinner)view.findViewById(R.id.spn_location);
-
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-
-        uid = firebaseUser.getUid();
-        databaseReference = firebaseDatabase.getReference().child("Userprofiles").child(uid);
-
-
-        // for spinner
-        final ArrayAdapter<CharSequence> genderAdapter;
-        final ArrayAdapter<CharSequence> locationAdapter;
-
-        locationAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.location, android.R.layout.simple_spinner_dropdown_item);
-        locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // spn_location.setAdapter(locationAdapter);
-
-        genderAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.gender, android.R.layout.simple_spinner_dropdown_item);
-        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_gender.setAdapter(genderAdapter);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Person persons = dataSnapshot.getValue(Person.class);
-
-                if (persons != null) {
-
-                    Toast.makeText(getActivity(), "person is not null", Toast.LENGTH_SHORT).show();
-                    edt_name.setText(persons.getName());
-                    edt_surname.setText(persons.getSurname());
-                    edt_mobile.setText(persons.getCell());
-                    edt_email.setText(persons.getEmail());
-                    edt_role.setText(persons.getRole());
-                    edt_year.setText(persons.getYear());
-
-                    for (int g = 0; g < spn_gender.getCount(); g++){
-                        if (spn_gender.getItemAtPosition(g).toString().equals(persons.getGender())) {
-                            spn_gender.setSelection(g);
-                            break;
-                        }
-                    }
-
-                    for (int l = 0; l < spn_location.getCount(); l++ ){
-                        if (spn_location.getItemAtPosition(l).toString().equals(persons.getLocation())){
-                            spn_location.setSelection(l);
-                            break;
-                        }
-                    }
-                    //spn_gender.getSelectedItem(persons.getGender());
-                }
-                else {
-                    Toast.makeText(getActivity(), "Sorry there seem to be no information", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        name = edt_name.getText().toString();*/
-
-
-        //updateUserProfile();
-
-        return view;
-    }
-
-    private void updateUserProfile(String name, String surname, String mobile ){
-
-        databaseReference.child("name").setValue("tharoll");
-
->>>>>>> e6c6377f2584fc627cdcdb877bb98dc229954c13
     }
 }

@@ -75,13 +75,13 @@ public class Tab3 extends Fragment implements View.OnClickListener{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pros = new ArrayList<>();
                 for ( DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if ( snapshot.getValue() != null) {
+                    //if ( snapshot.getValue() != null) {
                         Project project = snapshot.getValue(Project.class);
                         if (project != null && project.getId().equalsIgnoreCase(id)) {
                             pros.add(project);
                         }
 
-                    }
+                    //}
                 }
                 adapter = new ProjectAdapter(getContext(), pros);
                 proList.setAdapter(adapter);

@@ -5,15 +5,17 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coelab.codetribealumni.adapter.ProjectAdapter;
+import com.example.coelab.codetribealumni.data.Project;
 import com.example.coelab.codetribealumni.pojo.Experience;
 import com.example.coelab.codetribealumni.pojo.ExperienceAdapter;
-import com.example.coelab.codetribealumni.pojo.Project;
-import com.example.coelab.codetribealumni.pojo.ProjectAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,21 +26,29 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class StudentDetails extends AppCompatActivity {
-    private TextView nams,gender,role,cellphone,email,location,year;
+    private TextView nams, gender, role, cellphone, email, location, year;
     private CollapsingToolbarLayout collapsing = null;
-    private ListView exList,proList;
+    private ListView exList, proList;
+    private RecyclerView projectRecycler,experienceRecycler;
+    private ProjectsAdapter adapter;
+    private WorkExperienceAdapter wAdapter;
     String id;
     ArrayList<Experience> experienceList = new ArrayList<>();
     private DatabaseReference ref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
+        experienceRecycler = (RecyclerView) findViewById(R.id.recExperience);
+        experienceRecycler.setLayoutManager(new LinearLayoutManager(this));
+        experienceRecycler.setHasFixedSize(true);
+        projectRecycler = (RecyclerView) findViewById(R.id.recProjects);
+        projectRecycler.setLayoutManager(new LinearLayoutManager(this));
+        projectRecycler.setHasFixedSize(true);
         //getting intent
         Intent intent = getIntent();
         Person p = (Person) intent.getSerializableExtra("Person");
-        exList = (ListView) findViewById(R.id.stExperience);
-        proList = (ListView) findViewById(R.id.stProjects);
         id = p.getId();
         viewData("Experience");
         viewData("Projects");
@@ -55,7 +65,7 @@ public class StudentDetails extends AppCompatActivity {
         email = (TextView) findViewById(R.id.stEmail);
         location = (TextView) findViewById(R.id.stLocation);
         year = (TextView) findViewById(R.id.stYear);
-        if(p != null){
+        if (p != null) {
             nams.setText(p.getName() + " " + p.getSurname());
             gender.setText(p.getGender());
             role.setText(p.getRole());
@@ -65,31 +75,34 @@ public class StudentDetails extends AppCompatActivity {
             year.setText(p.getYear());
         }
     }
-    public void viewData(final String data){
+
+    public void viewData(final String data) {
         ref = FirebaseDatabase.getInstance().getReference(data);
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 final ArrayList<Project> projects = new ArrayList<>();
                 final ArrayList<Experience> experience = new ArrayList<>();
-                if(data.equalsIgnoreCase("Projects")){
+                if (data.equalsIgnoreCase("Projects")) {
                     Project p = dataSnapshot.getValue(Project.class);
-                    if(p != null && p.getId().equalsIgnoreCase(id)){
-                        projects.add(p);
-                        ProjectAdapter adapter = new ProjectAdapter(getApplicationContext(),projects);
-                        proList.setAdapter(adapter);
+                    if (p != null && p.getId().equalsIgnoreCase(id)) {
+                        projects.add(0, p);
+                        adapter = new ProjectsAdapter(projects, StudentDetails.this);
+                        projectRecycler.setAdapter(adapter);
+                        adapter.notifyItemInserted(0);
+                        projectRecycler.smoothScrollToPosition(0);
                     }
 
-                }
-                else if(data.equalsIgnoreCase("Experience")){
+                } else if (data.equalsIgnoreCase("Experience")) {
                     Experience e = dataSnapshot.getValue(Experience.class);
-                    if(e != null && e.getId().equalsIgnoreCase(id)){
+                    if (e != null && e.getId().equalsIgnoreCase(id)) {
                         experience.add(e);
-                        ExperienceAdapter adapter = new ExperienceAdapter(getApplicationContext(),experience);
-                        exList.setAdapter(adapter);
+                        wAdapter = new WorkExperienceAdapter(experience,StudentDetails.this);
+                        experienceRecycler.setAdapter(wAdapter);
+                        //ExperienceAdapter adapter = new ExperienceAdapter(getApplicationContext(), experience);
+                        //exList.setAdapter(adapter);
                     }
-                }
-                else if(data.equalsIgnoreCase("Accomplishments")){
+                } else if (data.equalsIgnoreCase("Accomplishments")) {
                     // p = dataSnapshot.getValue(Project.class);
                 }
             }
