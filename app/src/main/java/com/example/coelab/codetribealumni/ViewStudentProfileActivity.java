@@ -58,8 +58,7 @@ public class ViewStudentProfileActivity extends AppCompatActivity
     private ListView project_listview;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student_profile);
 

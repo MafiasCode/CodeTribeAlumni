@@ -151,6 +151,8 @@ public class FacilitatorActivity extends AppCompatActivity
                     String username = personObj.getName() + " " + personObj.getSurname();
                     nav_name.setText(username);
                     nav_email.setText(mFirebaseUser.getEmail());
+
+
                 }
 
                 }

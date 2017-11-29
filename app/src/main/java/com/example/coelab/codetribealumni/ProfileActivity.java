@@ -5,12 +5,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -35,6 +43,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -73,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity
     String imgDecodableString;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+    private Uri profilePhotoUrl;
 
 
     private FirebaseAuth firebaseAuth;
@@ -83,13 +93,19 @@ public class ProfileActivity extends AppCompatActivity
 
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         //Initialize the view
-        img_profileUpload = (ImageView)findViewById(R.id.profile_update_image);
+        img_profileUpload = (ImageView) findViewById(R.id.profile_update_image);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.blank_image1);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(),bitmap);
+        roundedBitmapDrawable.setCircular(true);
+        img_profileUpload.setImageDrawable(roundedBitmapDrawable);
+
         edt_name = (EditText) findViewById(R.id.txt_profile_name);
         edt_surname = (EditText) findViewById(R.id.txt_profile_surname);
         edt_mobile = (EditText) findViewById(R.id.txt_profile_phoneNo);
@@ -103,8 +119,6 @@ public class ProfileActivity extends AppCompatActivity
         btn_updateProfile = (Button)findViewById(R.id.update_profile);
 
 
-
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -115,8 +129,6 @@ public class ProfileActivity extends AppCompatActivity
 
         databaseReference = firebaseDatabase.getReference().child("Userprofiles").child(uid);
         storageReference = firebaseStorage.getReference().child("UserProfile_photos").child(uid);
-
-
 
 
         // for spinner
@@ -141,14 +153,21 @@ public class ProfileActivity extends AppCompatActivity
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_gender.setAdapter(genderAdapter);
 
-        edt_name.setEnabled(false);
-        edt_surname.setEnabled(false);
-        edt_mobile.setEnabled(false);
+        /*
+        for (int count = 0; count< firebaseUser.c){
+
+        } */
+
+        edt_name.setFocusable(false);
+        edt_surname.setFocusable(false);
+        edt_mobile.setFocusable(false);
         edt_email.setEnabled(false);
         edt_role.setEnabled(false);
         spn_gender.setEnabled(false);
+        //spn_gender.setClickable(false);
         spn_location.setEnabled(false);
         btn_updateProfile.setVisibility(View.INVISIBLE);
+
 
         // uploading an image
         img_profileUpload.setOnClickListener(new View.OnClickListener() {
@@ -160,12 +179,17 @@ public class ProfileActivity extends AppCompatActivity
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallaryIntent, PICK_IMAGE_REQUEST);
 
-                /*
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "select Image"), PICK_IMAGE_REQUEST);
-        */
+            }
+        });
+
+        // View a picture from firebase
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                //img_profileUpload
+                displayprofilePicture(uri);
+
             }
         });
 
@@ -175,13 +199,17 @@ public class ProfileActivity extends AppCompatActivity
             public void onClick(View view) {
                 // Click action
 
-                edt_name.setEnabled(true);
-                edt_surname.setEnabled(true);
-                edt_mobile.setEnabled(true);
+                //edt_name.setEnabled(true);
+                edt_name.setFocusable(true);
+                edt_name.setFocusableInTouchMode(true);
+                edt_surname.setFocusable(true);
+                edt_surname.setFocusableInTouchMode(true);
+                edt_mobile.setFocusable(true);
+                edt_mobile.setFocusableInTouchMode(true);
                 spn_gender.setEnabled(true);
                 spn_location.setEnabled(true);
-                edt_name.setEnabled(true);
-                edt_mobile.setEnabled(true);
+                //edt_name.setEnabled(true);
+                //edt_mobile.setEnabled(true);
                 //edt_mobile.setInputType(InputType.TYPE_NULL);
                 btn_updateProfile.setVisibility(View.VISIBLE);
 
@@ -202,10 +230,10 @@ public class ProfileActivity extends AppCompatActivity
                     edt_mobile.setText(persons.getCell());
                     edt_email.setText(persons.getEmail());
                     edt_role.setText(persons.getRole());
+                    //edt_role.setTextColor(Integer.parseInt(persons.getPhotoUrl()));
+                    //Log.i()
 
-                    //spn_role.setText(persons.getRole());
-                    //spn_year.setText(persons.getYear());
-
+                    // set value to spinner
                     for (int g = 0; g < spn_gender.getCount(); g++){
                         if (spn_gender.getItemAtPosition(g).toString().equals(persons.getGender())) {
                             spn_gender.setSelection(g);
@@ -220,20 +248,6 @@ public class ProfileActivity extends AppCompatActivity
                         }
                     }
 
-                   /* for (int y = 0; y < spn_year.getCount(); y++){
-                        if(spn_year.getItemAtPosition(y).toString().equals(persons.getYear())){
-                            spn_year.setSelection(y);
-                            break;
-                        }
-                    }
-
-                    for (int r = 0; r < spn_role.getCount(); r++){
-                        if (spn_role.getItemAtPosition(r).toString().equals(persons.getRole())){
-                            spn_role.setSelection(r);
-                            break;
-                        }
-                    }*/
-                    //spn_gender.getSelectedItem(persons.getGender());
                 }
                 else {
                     Toast.makeText(getApplication(), "Sorry there seem to be no information", Toast.LENGTH_SHORT).show();
@@ -251,8 +265,6 @@ public class ProfileActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-
-
                 name = edt_name.getText().toString();
                 surname = edt_surname.getText().toString();
                 contact = edt_mobile.getText().toString();
@@ -263,11 +275,14 @@ public class ProfileActivity extends AppCompatActivity
                     storageReference.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uri profilePhotoUrl = taskSnapshot.getDownloadUrl();
+                            Log.i("photourl", profilePhotoUrl.toString());
+                            //databaseReference.child("photoUrl").setValue(profilePhotoUrl);
                             Toast.makeText(getBaseContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    Toast.makeText(getApplication(), "Not uploaded", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplication(), "Not uploaded", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -319,6 +334,26 @@ public class ProfileActivity extends AppCompatActivity
                 fab.setVisibility(View.VISIBLE);
 
                 Toast.makeText(ProfileActivity.this, "Updated Succesfully", Toast.LENGTH_SHORT).show();
+
+                /* de activate the text
+                edt_name.setEnabled(false);
+                edt_surname.setEnabled(false);
+                edt_mobile.setEnabled(false);
+                edt_email.setEnabled(false);
+                edt_role.setEnabled(false);
+                spn_gender.setEnabled(false);
+                spn_location.setEnabled(false); */
+
+                // de activate the text
+                edt_name.setFocusable(false);
+                edt_surname.setFocusable(false);
+                edt_mobile.setFocusable(false);
+                edt_email.setEnabled(false);
+                edt_role.setEnabled(false);
+                spn_gender.setEnabled(false);
+                //spn_gender.setClickable(false);
+                spn_location.setEnabled(false);
+                btn_updateProfile.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -326,30 +361,17 @@ public class ProfileActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-         /*
-        try {
 
-            if (requestCode == PICK_IMAGE_REQUEST && resultCode)
-        }catch (Exception e)
-        {
-
-        }
-
-
-        if (resultCode == RESULT_OK){
-            filePath = data.getData();
-            Log.i()
-            Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
-            // Bitmap bitmap = filePath;
-        }
-*/
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null){
 
             filePath = data.getData();
             try {
+
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 img_profileUpload.setImageBitmap(bitmap);
+
+               //displayprofilePicture(profilePhotoUrl);
 
             }catch (IOException e)
             {
@@ -368,8 +390,21 @@ public class ProfileActivity extends AppCompatActivity
         String filePath = cursor.getString(column_index);
         cursor.close();
         // Convert file path into bitmap image using below line.
+
         Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        //Bitmap CircleBitmap = getRoundedCornerBitmap(bitmap, 100);
 
         return bitmap;
+
     }
+
+    private void displayprofilePicture(Uri downloadUrl){
+        if (downloadUrl != null){
+            Picasso.with(getApplication()).load(downloadUrl)
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .transform(new PicassoCircleTransformation()).fit().centerCrop().into(img_profileUpload);
+        }
+    }
+
+
 }
