@@ -2,147 +2,186 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<android.support.design.widget.CoordinatorLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<LinearLayout android:id="@+id/lay"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/txt_profile_name"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Name" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txt_profile_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Surname" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txt_profile_phoneNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@drawable/ic_phone_black_24dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Cellphone" />
 
-    <EditText
-        android:id="@+id/txt_profile_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Email" />
+            <LinearLayout
+                android:id="@+id/lay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txt_profile_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/ic_people_outline_black_24dp"
-        android:editable="false"
-        android:hint="Gender" />
-    <EditText
-        android:id="@+id/txt_profile_role"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-        android:layout_marginRight="40dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Role" />
-    <EditText
-        android:id="@+id/txt_profile_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:drawableLeft="@drawable/ic_location_on_black_24dp"
-        android:layout_marginRight="40dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Location" />
-    <EditText
-        android:id="@+id/txt_profile_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@drawable/ic_date_range_black_24dp"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:hint="Year" />
+                <ImageView
+                    android:id="@+id/profile_update_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:cropToPadding="true"
+                    android:src="@drawable/ic_account_circle_black_24dp" />
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/genderSpinner"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@android:color/black" />
+                <EditText
+                    android:id="@+id/txt_profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="40dp"
+                    android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Name" />
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/roleSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@android:color/black" />
+                <EditText
+                    android:id="@+id/txt_profile_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Surname" />
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/locationSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@android:color/black" />
+                <EditText
+                    android:id="@+id/txt_profile_phoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Cellphone" />
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/yearSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@android:color/black" />
-</LinearLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnEditPros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:clickable="true"
-        android:src="@drawable/ic_mode_edit_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@+id/lay"
-        app:layout_anchorGravity="right|bottom" />
-</android.support.design.widget.CoordinatorLayout>
+                <EditText
+                    android:id="@+id/txt_profile_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Email" />
+
+                <EditText
+                    android:id="@+id/txt_profile_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_people_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Gender" />
+
+                <EditText
+                    android:id="@+id/txt_profile_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Role" />
+
+                <EditText
+                    android:id="@+id/txt_profile_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Location" />
+
+                <EditText
+                    android:id="@+id/txt_profile_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:editable="false"
+                    android:hint="Year" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/genderSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/roleSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/locationSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/yearSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/update_stdprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/buttonshape"
+                android:text="Update"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnEditPros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:src="@drawable/ic_mode_edit_white_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_anchor="@+id/lay"
+            app:layout_anchorGravity="right|bottom" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
 </ScrollView>

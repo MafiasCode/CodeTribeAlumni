@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity
 
         btn_updateProfile = (Button)findViewById(R.id.update_profile);
 
-
+        // creating Instance
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -153,10 +153,6 @@ public class ProfileActivity extends AppCompatActivity
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_gender.setAdapter(genderAdapter);
 
-        /*
-        for (int count = 0; count< firebaseUser.c){
-
-        } */
 
         edt_name.setFocusable(false);
         edt_surname.setFocusable(false);
@@ -164,7 +160,6 @@ public class ProfileActivity extends AppCompatActivity
         edt_email.setEnabled(false);
         edt_role.setEnabled(false);
         spn_gender.setEnabled(false);
-        //spn_gender.setClickable(false);
         spn_location.setEnabled(false);
         btn_updateProfile.setVisibility(View.INVISIBLE);
 
@@ -199,18 +194,15 @@ public class ProfileActivity extends AppCompatActivity
             public void onClick(View view) {
                 // Click action
 
-                //edt_name.setEnabled(true);
                 edt_name.setFocusable(true);
                 edt_name.setFocusableInTouchMode(true);
                 edt_surname.setFocusable(true);
                 edt_surname.setFocusableInTouchMode(true);
                 edt_mobile.setFocusable(true);
                 edt_mobile.setFocusableInTouchMode(true);
-                spn_gender.setEnabled(true);
-                spn_location.setEnabled(true);
-                //edt_name.setEnabled(true);
-                //edt_mobile.setEnabled(true);
-                //edt_mobile.setInputType(InputType.TYPE_NULL);
+                //spn_gender.setEnabled(true);
+                //spn_location.setEnabled(true);
+
                 btn_updateProfile.setVisibility(View.VISIBLE);
 
                 fab.setVisibility(View.INVISIBLE);
