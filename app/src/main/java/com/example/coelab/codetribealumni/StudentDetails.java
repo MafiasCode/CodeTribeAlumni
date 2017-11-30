@@ -5,6 +5,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class StudentDetails extends AppCompatActivity {
     private CollapsingToolbarLayout collapsing = null;
     private ListView exList, proList;
     private ProjectsAdapter adapter;
+    private RecyclerView recProject,recExperience;
     private WorkExperienceAdapter wAdapter;
     String id;
     ArrayList<Experience> experienceList = new ArrayList<>();
@@ -38,6 +41,12 @@ public class StudentDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
+        recExperience = (RecyclerView) findViewById(R.id.recExperience);
+        recExperience.setHasFixedSize(true);
+        recExperience.setLayoutManager(new LinearLayoutManager(this));
+        recProject = (RecyclerView) findViewById(R.id.recProjects);
+        recProject.setHasFixedSize(true);
+        recProject.setLayoutManager(new LinearLayoutManager(this));
         //getting intent
         Intent intent = getIntent();
         Person p = (Person) intent.getSerializableExtra("Person");
@@ -78,8 +87,10 @@ public class StudentDetails extends AppCompatActivity {
                     Project p = dataSnapshot.getValue(Project.class);
                     if(p != null && p.getId().equalsIgnoreCase(id)){
                         projects.add(p);
-                        ProjectAdapter adapter = new ProjectAdapter(getApplicationContext(),projects);
-                        proList.setAdapter(adapter);
+                        ProjectsAdapter adapter = new ProjectsAdapter(projects,StudentDetails.this);
+                        recProject.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        // proList.setAdapter(adapter);
                     }
 
                 }
@@ -87,8 +98,8 @@ public class StudentDetails extends AppCompatActivity {
                     Experience e = dataSnapshot.getValue(Experience.class);
                     if(e != null && e.getId().equalsIgnoreCase(id)){
                         experience.add(e);
-                        ExperienceAdapter adapter = new ExperienceAdapter(getApplicationContext(),experience);
-                        exList.setAdapter(adapter);
+                        WorkExperienceAdapter adapter = new WorkExperienceAdapter(experience,StudentDetails.this);
+                        recExperience.setAdapter(adapter);
                     }
                 }
                 else if(data.equalsIgnoreCase("Accomplishments")){
