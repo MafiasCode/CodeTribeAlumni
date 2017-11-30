@@ -116,6 +116,7 @@ public class Tab1 extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (view == fab) {
 
+            
             //Toast.makeText(getContext(), "Editable", Toast.LENGTH_SHORT).show();
             txtName.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
             txtSurname.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
