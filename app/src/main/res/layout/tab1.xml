@@ -22,7 +22,7 @@
         android:drawableLeft="@drawable/ic_person_outline_black_24dp"
         android:drawablePadding="10dp"
         android:editable="false"
-        android:hint="sara" />
+        android:hint="Name" />
 
     <EditText
         android:id="@+id/txt_profile_surname"
@@ -33,7 +33,7 @@
         android:drawableLeft="@drawable/ic_person_outline_black_24dp"
         android:drawablePadding="10dp"
         android:editable="false"
-        android:hint="mathabatha" />
+        android:hint="Surname" />
 
     <EditText
         android:id="@+id/txt_profile_phoneNo"
@@ -44,7 +44,7 @@
         android:drawableLeft="@drawable/ic_phone_black_24dp"
         android:drawablePadding="10dp"
         android:editable="false"
-        android:hint="071 123 4321" />
+        android:hint="Cellphone" />
 
     <EditText
         android:id="@+id/txt_profile_email"
@@ -55,7 +55,7 @@
         android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
         android:drawablePadding="10dp"
         android:editable="false"
-        android:hint="valy@mlab.co.za" />
+        android:hint="Email" />
 
     <EditText
         android:id="@+id/txt_profile_gender"
@@ -133,18 +133,6 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:textColor="@android:color/black" />
-
-    <Button
-        android:id="@+id/btn_profile_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/buttonshape"
-        android:text="Save"
-        android:textColor="@android:color/white"
-        android:visibility="gone" />
 </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnEditPros"
@@ -156,14 +144,5 @@
         app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/lay"
         app:layout_anchorGravity="right|bottom" />
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnEditPro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:background="@color/colorPrimary"
-        android:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/ic_mode_edit_white_24dp" />-->
 </android.support.design.widget.CoordinatorLayout>
 </ScrollView>

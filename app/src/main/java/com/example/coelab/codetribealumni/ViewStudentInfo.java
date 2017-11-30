@@ -3,11 +3,14 @@ package com.example.coelab.codetribealumni;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.coelab.codetribealumni.adapter.ProjectAdapter;
 import com.example.coelab.codetribealumni.data.Project;
 import com.example.coelab.codetribealumni.data.Project;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,16 +27,21 @@ public class ViewStudentInfo extends AppCompatActivity {
     private TextView names,gender,role,cellphone,email,location,year;
     private ListView projectList,experienceList;
     private DatabaseReference ref;
+    private RecyclerView projectRecycler;
+    private ArrayList<Project> listOfProjects;
     String id;
     FirebaseAuth auth;
-    private ArrayList<Project> pro = new ArrayList<>();
+    ProjectsAdapter adapter;
     String i;
-    //private DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_student_info);
+        setContentView(R.layout.activity_view_student_profile);
         auth = FirebaseAuth.getInstance();
+        projectRecycler = (RecyclerView) findViewById(R.id.recProjects);
+        projectRecycler.setLayoutManager(new LinearLayoutManager(this));
+        projectRecycler.setHasFixedSize(false);
+        listOfProjects = new ArrayList<>();
         FirebaseUser user = auth.getCurrentUser();
         id = user.getUid();
         //Adding back button
@@ -48,11 +56,13 @@ public class ViewStudentInfo extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Project p = dataSnapshot.getValue(Project.class);
-                if(p != null ){
-                    pro.add(p);
-                   ArrayAdapter<Project> adapter = new ArrayAdapter<Project>(getApplicationContext(),android.R.layout.simple_list_item_1,pro);
-                   projectList.setAdapter(adapter);
-                }
+                /*if(p != null ){
+                    listOfProjects.add(0,p);
+                    adapter = new ProjectsAdapter(listOfProjects,ViewStudentInfo.this);
+                    projectRecycler.setAdapter(adapter);
+                   adapter.notifyItemInserted(0);
+                   projectRecycler.smoothScrollToPosition(0);
+                }*/
             }
 
             @Override
@@ -76,7 +86,7 @@ public class ViewStudentInfo extends AppCompatActivity {
             }
         });
         //finding views
-        projectList = (ListView) findViewById(R.id.projectList);
+        projectList = (ListView) findViewById(R.id.project_list);
         names = (TextView) findViewById(R.id.stNames);
         gender = (TextView) findViewById(R.id.stGender);
         role = (TextView) findViewById(R.id.stRole);
