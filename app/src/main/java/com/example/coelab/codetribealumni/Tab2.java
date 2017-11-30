@@ -52,7 +52,7 @@ public class Tab2 extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Person p = list.get(i);
                 //Toast.makeText(getContext(), p.getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(),ViewStudentInfo.class);
+                Intent intent = new Intent(getContext(),StudentDetails.class);
                 intent.putExtra("Person",p);
                 startActivity(intent);
             }
@@ -61,7 +61,8 @@ public class Tab2 extends Fragment {
         FirebaseUser user = auth.getCurrentUser();
         id = user.getUid();
         ref = FirebaseDatabase.getInstance().getReference("Userprofiles").child(id);
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Person p = dataSnapshot.getValue(Person.class);

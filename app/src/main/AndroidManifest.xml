@@ -56,47 +56,44 @@
 
         <activity
             android:name=".FacilitatorActivity"
-            android:label="@string/title_activity_facilitator"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".FacilitatorLandingPage" />
-
-        <activity android:name=".ViewStudentInfo" />
         <activity android:name=".WorkExperience" />
-        <activity android:name=".AddExperience"/>
-
+        <activity android:name=".AddExperience" />
         <activity
             android:name=".ViewStudentProfileActivity"
-            android:label="@string/view_student"
+            android:label="Student Profile"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".FacilitatorActivity">
 
-            <!-- Parent activity meta-data to support 4.0 and lower-->
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FacilitatorActivity">
-            </meta-data>
+                android:value=".FacilitatorActivity"></meta-data>
         </activity>
-
-        <activity android:name=".ProfileActivity"
+        <activity
+            android:name=".ProfileActivity"
             android:label="Profile"
             android:parentActivityName=".FacilitatorActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FacilitatorActivity">
-            </meta-data>
+                android:value=".FacilitatorActivity"></meta-data>
         </activity>
-
-        <activity android:name=".ViewCodetribersActivity"
+        <activity
+            android:name=".ViewCodetribersActivity"
             android:label=""
             android:parentActivityName=".FacilitatorActivity">
 
-            <!-- Parent activity meta-data to support 4.0 and lower-->
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FacilitatorActivity">
-            </meta-data>
+                android:value=".FacilitatorActivity"></meta-data>
         </activity>
+        <activity android:name=".StudentDetails"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>

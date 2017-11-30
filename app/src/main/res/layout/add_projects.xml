@@ -16,7 +16,7 @@
         android:layout_marginBottom="80dp"
         android:layout_marginRight="20dp"
         android:clickable="true"
-        android:src="@drawable/ic_create_black_24dp"
+        android:src="@drawable/ic_mode_edit_white_24dp"
         app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/listOfProjects"
         app:layout_anchorGravity="right|bottom" />
