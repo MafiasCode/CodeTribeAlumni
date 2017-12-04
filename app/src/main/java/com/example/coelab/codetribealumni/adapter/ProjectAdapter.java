@@ -53,7 +53,7 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), p.getProjectName(), Toast.LENGTH_SHORT).show();
                 View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout, null);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setView(view);

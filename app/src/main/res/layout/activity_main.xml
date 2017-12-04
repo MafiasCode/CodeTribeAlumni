@@ -39,7 +39,6 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="190dp"
-        android:src="@drawable/logo"
         android:layout_height="100dp"
         android:layout_weight="0.17"
 

@@ -20,6 +20,7 @@
     <stroke
         android:width="3dp"
         android:color="@color/colorPrimary" />
+
     <shape
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:shape="rectangle"/>
@@ -46,4 +47,5 @@
     <stroke
         android:width="3dp"
         android:color="@color/colorPrimaryDark"/>
+
 </shape>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.coelab.codetribealumni.pojo.Accomplishments;
 import com.example.coelab.codetribealumni.pojo.Experience;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,8 +66,8 @@ public class AddAccomplishment extends AppCompatActivity {
                     return;
                 }
 
-                Experience e = new Experience(myId,crs,qlf,inst,yr);
-                ref.child(id).setValue(e);
+                Accomplishments ac = new Accomplishments(myId,crs,qlf,inst,yr);
+                ref.child(id).setValue(ac);
                 startActivity(new Intent(getApplicationContext(),AccomplishmentActivity.class));
             }
         });
