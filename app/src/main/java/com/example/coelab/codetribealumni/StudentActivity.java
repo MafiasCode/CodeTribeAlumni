@@ -82,11 +82,6 @@ public class StudentActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.career_opp) {
-            //Intent intent =   new Intent(this,CareerOpportunitiesActivity.class);
-            //startActivity(intent);
-            return true;
-        }
         if (id == R.id.about_us) {
             Intent intent = new Intent(this,About_Us_Activity.class);
             startActivity(intent);

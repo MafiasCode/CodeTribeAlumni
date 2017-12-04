@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coelab.codetribealumni.adapter.ProjectAdapter;
+import com.example.coelab.codetribealumni.data.Project;
 import com.example.coelab.codetribealumni.pojo.Experience;
 import com.example.coelab.codetribealumni.pojo.ExperienceAdapter;
 import com.example.coelab.codetribealumni.data.Project;
@@ -26,7 +28,9 @@ import java.util.ArrayList;
 public class StudentDetails extends AppCompatActivity {
     private TextView nams,gender,role,cellphone,email,location,year;
     private CollapsingToolbarLayout collapsing = null;
-    private ListView exList,proList;
+    private ListView exList, proList;
+    private ProjectsAdapter adapter;
+    private WorkExperienceAdapter wAdapter;
     String id;
     ArrayList<Experience> experienceList = new ArrayList<>();
     private DatabaseReference ref;
@@ -37,8 +41,6 @@ public class StudentDetails extends AppCompatActivity {
         //getting intent
         Intent intent = getIntent();
         Person p = (Person) intent.getSerializableExtra("Person");
-        exList = (ListView) findViewById(R.id.stExperience);
-        proList = (ListView) findViewById(R.id.stProjects);
         id = p.getId();
         viewData("Experience");
         viewData("Projects");

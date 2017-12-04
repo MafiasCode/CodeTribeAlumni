@@ -11,17 +11,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/profile_update_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
-
                 android:cropToPadding="true"
-                android:src="@drawable/ic_account_circle_black_24dp"/>
+                android:layout_marginTop="10dp"
+                android:src="@drawable/blank_image1"/>
 <!--
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_imageView"
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:text="Name"/>
 
         <EditText
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-
             />
         <!--android:editable="false" -->
         <TextView
@@ -72,7 +70,6 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="40dp"
             android:text="Mobile No"/>
-
         <EditText
             android:id="@+id/txt_profile_phoneNo"
             android:layout_width="match_parent"
@@ -81,7 +78,6 @@
             android:layout_marginRight="40dp"
             android:drawablePadding="10dp"
             android:inputType="number"
-            android:hint="Contact Number"
              />
 
         <TextView
@@ -95,9 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-
-            android:hint="Email" />
+            android:layout_marginRight="40dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -116,31 +110,21 @@
 
             />
 
-        <LinearLayout
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spn_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:hint="Male" />
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spn_gender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:hint="Male" />
-
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spn_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:hint="pta" />
-        </LinearLayout>
-
-
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spn_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:hint="pta" />
 
         <Button
             android:id="@+id/update_profile"
@@ -153,15 +137,15 @@
             android:layout_marginTop="15dp"
             android:text="Update"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:background="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_mode_edit_white_24dp" />
+           <!--<android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:background="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_mode_edit_white_24dp"/> -->
 
     </LinearLayout>
 

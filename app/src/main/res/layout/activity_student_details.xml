@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.coelab.codetribealumni.StudentDetails">
@@ -27,27 +28,32 @@
             android:layout_width="150dp"
             android:scaleType="fitXY"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_account_circle_black_24dp"
+            android:src="@drawable/blank_profile"
             android:layout_height="150dp" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
+                app:layout_collapseMode="parallax"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
-    android:id="@+id/scroll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        android:id="@+id/scroll"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:scrollbarStyle="insideInset"
+        android:layout_height="match_parent"
+        android:clipToPadding="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -135,13 +141,10 @@
                 android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/stAccomplishments"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recAcoomplishment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fastScrollAlwaysVisible="true" />
-
+                android:layout_height="wrap_content" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -158,16 +161,12 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/stExperience"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recExperience"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="8dp"
-                android:background="@android:color/black" />
 
             <View
                 android:layout_width="match_parent"
@@ -185,11 +184,12 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/stProjects"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recProjects"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="wrap_content" />
         </LinearLayout>
+        </ScrollView>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
