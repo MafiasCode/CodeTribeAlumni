@@ -153,12 +153,12 @@ public class ProfileActivity extends AppCompatActivity
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_gender.setAdapter(genderAdapter);
 
-
         edt_name.setFocusable(false);
         edt_surname.setFocusable(false);
         edt_mobile.setFocusable(false);
         edt_email.setEnabled(false);
         edt_role.setEnabled(false);
+        spn_gender.getSelectedView();
         spn_gender.setEnabled(false);
         spn_location.setEnabled(false);
         btn_updateProfile.setVisibility(View.INVISIBLE);
@@ -188,6 +188,8 @@ public class ProfileActivity extends AppCompatActivity
             }
         });
 
+
+
        final  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,8 +202,8 @@ public class ProfileActivity extends AppCompatActivity
                 edt_surname.setFocusableInTouchMode(true);
                 edt_mobile.setFocusable(true);
                 edt_mobile.setFocusableInTouchMode(true);
-                //spn_gender.setEnabled(true);
-                //spn_location.setEnabled(true);
+                spn_gender.setEnabled(true);
+                spn_location.setEnabled(true);
 
                 btn_updateProfile.setVisibility(View.VISIBLE);
 
@@ -393,7 +395,6 @@ public class ProfileActivity extends AppCompatActivity
     private void displayprofilePicture(Uri downloadUrl){
         if (downloadUrl != null){
             Picasso.with(getApplication()).load(downloadUrl)
-                    .placeholder(R.mipmap.ic_launcher_round)
                     .transform(new PicassoCircleTransformation()).fit().centerCrop().into(img_profileUpload);
         }
     }

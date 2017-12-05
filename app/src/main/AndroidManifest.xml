@@ -16,12 +16,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <activity
+       <!-- <activity
             android:name=".SignInActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> -->
 
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".FacilitatorLandingPage" />
-        <activity android:name=".WorkExperience" />
+
+        <activity android:name=".WorkExperience"
+            android:parentActivityName=".StudentActivity">
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".StudentActivity">
+        </meta-data>
+        </activity>
         <activity android:name=".AddExperience" />
         <activity
             android:name=".ViewStudentProfileActivity"
