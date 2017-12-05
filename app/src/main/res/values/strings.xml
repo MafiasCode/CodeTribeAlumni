@@ -43,7 +43,8 @@
     <string name="career_opp">Career Opportunities</string>
     <string name="about_us">About Us</string>
     <string name="exit">Logout</string>
-    <string name="action_search">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort">Sort</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="view_student"></string>

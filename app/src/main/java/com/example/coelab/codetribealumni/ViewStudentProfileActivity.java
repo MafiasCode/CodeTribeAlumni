@@ -214,7 +214,7 @@ public class ViewStudentProfileActivity extends AppCompatActivity
         }
     }
 
-    //Adapter experience adapter
+    /*Adapter experience adapter
     private class ExperinceAdapter extends ArrayAdapter<Experience>
     {
         public ExperinceAdapter(@NonNull Context context, @NonNull List<Experience> objects) {
@@ -244,7 +244,7 @@ public class ViewStudentProfileActivity extends AppCompatActivity
             enddate.setText(experience.getEndDate());
             return view;
         }
-    }
+    }*/
 
 
 }

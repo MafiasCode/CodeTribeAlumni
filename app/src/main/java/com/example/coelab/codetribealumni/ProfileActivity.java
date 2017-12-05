@@ -263,7 +263,8 @@ public class ProfileActivity extends AppCompatActivity
                 gender = spn_gender.getSelectedItem().toString();
                 location =spn_location.getSelectedItem().toString();
 
-                if (filePath != null){
+                if (filePath != null)
+                {
                     storageReference.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

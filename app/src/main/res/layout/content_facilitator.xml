@@ -26,7 +26,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                     android:text="Codetribe Academy"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginTop="10dp"/>
 

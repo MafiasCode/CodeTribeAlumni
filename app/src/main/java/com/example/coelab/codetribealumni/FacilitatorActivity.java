@@ -1,14 +1,11 @@
 package com.example.coelab.codetribealumni;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,19 +26,23 @@ import android.widget.Toast;
 
 import com.example.coelab.codetribealumni.adapter.PersonAdapter;
 import com.example.coelab.codetribealumni.utils.RecyclerItemClickListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FacilitatorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -59,16 +60,20 @@ public class FacilitatorActivity extends AppCompatActivity
 
     //Firebase Database
     private FirebaseDatabase mdatabase;
-    private DatabaseReference myRef,databaseref,databasereference;
+    private DatabaseReference myRef,databaseref;
     private Button totalStudents;
 
-    private String uid;
+    private String uid,uuid;
     private ArrayList<Person> studentList;
     private ArrayList<String> studentListIds;
     private PersonAdapter adapter;
     Context context;
-    String location;
     int counter;
+
+    //Uploading an image
+    CircleImageView profileImage;
+    private FirebaseStorage storage;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,8 +84,32 @@ public class FacilitatorActivity extends AppCompatActivity
         context = getBaseContext();
         setSupportActionBar(toolbar);
 
-        totalStudents = findViewById(R.id.count);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        uuid = user.getUid();
+        //Toast.makeText(getApplicationContext()," " + uuid,Toast.LENGTH_SHORT).show();
+        //finding the circleimage view
+        profileImage = findViewById(R.id.profilefacilitator);
 
+        //Creating an instance of firebase storage
+        storage = FirebaseStorage.getInstance();
+        //image function
+        storageReference = storage.getReference().child("UserProfile_photos").child(uuid);
+
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                displayprofilePic(uri);
+            }
+        });
+
+       /* profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
+
+        totalStudents = findViewById(R.id.count);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,0, 0);
         drawer.addDrawerListener(toggle);
@@ -90,6 +119,8 @@ public class FacilitatorActivity extends AppCompatActivity
         //Setting up the username and email of the user enetered to the navigation headers
         nav_name = navigationView.getHeaderView(0).findViewById(R.id.txtUsername);
         nav_email = navigationView.getHeaderView(0).findViewById(R.id.txtUseremail);
+        //Trying something 4 Dec 2017
+        profileImage = navigationView.getHeaderView(0).findViewById(R.id.profilefacilitator);
 
         //RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -116,8 +147,6 @@ public class FacilitatorActivity extends AppCompatActivity
 
         myRef = mdatabase.getReference().child("Userprofiles").child(uid);
 
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
 
@@ -126,6 +155,41 @@ public class FacilitatorActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
             startActivity(intent);
         }
+
+        /*Trying to limit the retrieve data
+        databaseref = mdatabase.getReference().child("Userprofiles");
+        databaseref.orderByChild("location").equalTo("Tshwane").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                studentList = new ArrayList<>();
+                studentListIds = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (snapshot.getValue() != null) {
+                        Person person = snapshot.getValue(Person.class);
+                        //Added now now for test
+                        if ("Student".equals(person.getRole())) {
+                            Log.i("Sarah", snapshot.toString());
+                            studentList.add(person);
+                            studentListIds.add(snapshot.getKey());
+                            counter ++;
+                        }
+                    }
+                }
+
+                //totalStudents.setText(counter);
+                adapter = new PersonAdapter(studentList);
+                adapter.notifyDataSetChanged();
+                mRecyclerView.setAdapter(adapter);
+                totalStudents.setText(String.valueOf(counter));
+                //Toast.makeText(getApplicationContext(), " " + counter ,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
 
         databaseref = mdatabase.getReference().child("Userprofiles");
         databaseref.addValueEventListener(new ValueEventListener()
@@ -143,20 +207,15 @@ public class FacilitatorActivity extends AppCompatActivity
                             studentList.add(person);
                             studentListIds.add(snapshot.getKey());
                             counter ++;
-
                         }
                     }
-
-
                 }
-
 
                 //totalStudents.setText(counter);
                 adapter = new PersonAdapter(studentList);
                 adapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(adapter);
                totalStudents.setText(String.valueOf(counter));
-                //Toast.makeText(getApplicationContext(), " " + counter ,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -166,7 +225,7 @@ public class FacilitatorActivity extends AppCompatActivity
             }
         });
 
-
+        //Dislaying facilitator data from the database to the navigation drawer
         myRef.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -186,11 +245,11 @@ public class FacilitatorActivity extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -200,11 +259,14 @@ public class FacilitatorActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.facilitator, menu);
 
         MenuItem searchMenu = menu.findItem(R.id.action_search);
+        MenuItem sortMenu = menu.findItem(R.id.action_sort);
+
         SearchView searchView = (SearchView)searchMenu.getActionView();
         search(searchView);
         return super.onCreateOptionsMenu(menu);
@@ -276,6 +338,15 @@ public class FacilitatorActivity extends AppCompatActivity
         int id = item.getItemId();
         displaySelectedScreen(id);
         return true;
+    }
+
+  private void displayprofilePic(Uri downloadUri)
+    {
+        if(downloadUri != null)
+        {
+            Picasso.with(getApplication())
+                    .load(downloadUri).placeholder(R.drawable.blank_image1).transform(new PicassoCircleTransformation()).fit().centerCrop().into(profileImage);
+        }
     }
 
 }

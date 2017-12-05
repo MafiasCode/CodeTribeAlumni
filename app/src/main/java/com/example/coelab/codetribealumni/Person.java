@@ -64,6 +64,19 @@ public class Person implements Serializable
         this.location = location;
         this.year = year;
     }
+
+    public Person(String name, String surname, String cell, String gender, String email, String role, String location, String year, int profileimage) {
+        this.name = name;
+        this.surname = surname;
+        this.cell = cell;
+        this.gender = gender;
+        this.email = email;
+        this.role = role;
+        this.location = location;
+        this.year = year;
+        this.profileimage = profileimage;
+    }
+
     public String getName() {
         return name;
     }
