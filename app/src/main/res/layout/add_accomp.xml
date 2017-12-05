@@ -6,22 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.coelab.codetribealumni.AccomplishmentActivity">
 
-    <ListView
-        android:id="@+id/accomplist"
+
+    <ListView android:id="@+id/listOfProjects"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addAccomp"
+        android:id="@+id/btnAddProjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="20dp"
         android:clickable="true"
-        android:src="@drawable/ic_mode_edit_white_24dp"
+        android:src="@drawable/ic_create_black_24dp"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@+id/accomplist"
-        app:layout_anchorGravity="right|bottom"
-        tools:layout_editor_absoluteX="328dp"
-        tools:layout_editor_absoluteY="440dp" />
-
+        app:layout_anchor="@+id/listOfProjects"
+        app:layout_anchorGravity="right|bottom" />
 </android.support.design.widget.CoordinatorLayout>

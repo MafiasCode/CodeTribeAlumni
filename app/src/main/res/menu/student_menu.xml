@@ -7,6 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/accomp"
         app:showAsAction="never" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40937b227940a345c8600cd4db2f2199febf8abe
     <item
         android:id="@+id/work_experience"
         android:orderInCategory="100"

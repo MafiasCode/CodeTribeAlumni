@@ -32,7 +32,6 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
     private ListView experienceList;
     private FloatingActionButton addExperience;
     private DatabaseReference ref;
-    private FirebaseAuth auth;
     private ArrayList<Experience> exList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +40,12 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("Employment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         experienceList = findViewById(R.id.xperienceList);
-        auth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("Experience");
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final String id = auth.getCurrentUser().getUid();
                 Experience ex = dataSnapshot.getValue(Experience.class);
-                if(ex != null && ex.getId().equalsIgnoreCase(id)){
+                if(ex != null){
                     exList.add(ex);
                     ExperienceAdapter adapter = new ExperienceAdapter(getApplicationContext(),exList);
                     experienceList.setAdapter(adapter);

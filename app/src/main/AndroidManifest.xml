@@ -61,6 +61,7 @@
 
         <activity android:name=".FacilitatorLandingPage" />
         <activity android:name=".WorkExperience" />
+        <activity android:name=".AddAccomplishment" />
         <activity android:name=".AddExperience" />
         <activity
             android:name=".ViewStudentProfileActivity"
