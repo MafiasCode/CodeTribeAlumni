@@ -40,6 +40,7 @@ public class StudentActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Student details");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -79,12 +80,6 @@ public class StudentActivity extends AppCompatActivity {
 
             Intent intent =   new Intent(this,AccomplishmentActivity.class);
             startActivity(intent);
-            return true;
-        }
-
-        if (id == R.id.career_opp) {
-            //Intent intent =   new Intent(this,CareerOpportunitiesActivity.class);
-            //startActivity(intent);
             return true;
         }
         if (id == R.id.about_us) {

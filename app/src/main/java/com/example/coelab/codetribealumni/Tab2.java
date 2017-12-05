@@ -131,7 +131,7 @@ public class Tab2 extends Fragment {
             TextView name = (TextView) view.findViewById(R.id.viewName);
             name.setText(p.getName() + " " + p.getSurname());
             TextView loc = (TextView) view.findViewById(R.id.viewGender);
-            loc.setText(p.getLocation());
+            loc.setText(p.getGender());
             return view;
         }
     }

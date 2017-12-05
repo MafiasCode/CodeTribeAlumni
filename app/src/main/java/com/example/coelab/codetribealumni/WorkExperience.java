@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -38,6 +39,7 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_experience);
         getSupportActionBar().setTitle("Employment");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         experienceList = findViewById(R.id.xperienceList);
         auth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("Experience");
@@ -83,5 +85,12 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
         if(v == addExperience){
             startActivity(new Intent(getApplicationContext(),AddExperience.class));
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), StudentActivity.class);
+        startActivity(myIntent);
+        return true;
+
     }
 }
