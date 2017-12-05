@@ -95,10 +95,10 @@ public class AccomplishmentActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v){
         if(v == fab_add){
-            //startActivity(new Intent(getApplicationContext(),AddAccomplishment.class));
+           startActivity(new Intent(getApplicationContext(),AddAccomplishment.class));
 
-            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.second_dialog_layout,null);
-            AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext());
+           /* View view = LayoutInflater.from(getParent()).inflate(R.layout.second_dialog_layout,null);
+            AlertDialog.Builder dialog = new AlertDialog.Builder(getParent());
             dialog.setView(view);
             dialog.setTitle("ADD Accomplishment");
             final EditText courseName = (EditText) view.findViewById(R.id.dialogCourseName);
@@ -125,7 +125,9 @@ public class AccomplishmentActivity extends AppCompatActivity implements View.On
                 }
             });
             Dialog d = dialog.create();
-            d.show();
+            d.show();;*/
+
+
 
         }
     }

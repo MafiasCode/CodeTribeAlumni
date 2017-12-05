@@ -3,6 +3,7 @@ package com.example.coelab.codetribealumni.adapter;
 /**
  * Created by Yanga on 11/29/2017.
  */
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +13,20 @@ import android.widget.TextView;
 import com.example.coelab.codetribealumni.R;
 import com.example.coelab.codetribealumni.pojo.Accomplishments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 public class RecyclerViewAccomplishmentAdapter extends RecyclerView.Adapter<RecyclerViewAccomplishmentAdapter.ViewHolder>{
 
-    List <Accomplishments> accomplishments;
+    //List <Accomplishments> accomplishments;
+    private ArrayList<Accomplishments> accomplishments;
+    private Activity context;
 
-    public RecyclerViewAccomplishmentAdapter(List<Accomplishments> accomplishments){
-        this.accomplishments = accomplishments;
+    public RecyclerViewAccomplishmentAdapter(ArrayList<Accomplishments> accomplishments ){
+       this.accomplishments = accomplishments;
+
 
     }
 
@@ -34,23 +39,29 @@ public class RecyclerViewAccomplishmentAdapter extends RecyclerView.Adapter<Recy
     @Override
     public void onBindViewHolder(RecyclerViewAccomplishmentAdapter.ViewHolder holder,int position){
         Accomplishments accomplish = accomplishments.get(position);
-        holder.txtcourseName.setText(accomplish.getcourseName());
-        holder.txtqualification.setText(accomplish.getqualification());
-        holder.txtinstitution.setText(accomplish.getinstitution());
-        holder.txtyear.setText(accomplish.getyear());
+        holder.courseName.setText(accomplish.getcourseName());
+        holder.qualification.setText(accomplish.getqualification());
+        holder.institution.setText(accomplish.getinstitution());
+        holder.year.setText(accomplish.getyear());
 
     }
 
     @Override
     public int getItemCount(){
+
+        if(accomplishments == null){
+            return 0;
+        }
+
         return accomplishments.size();
     }
 
+
     public class ViewHolder extends  RecyclerView.ViewHolder{
-        @BindView(R.id.txtCourseName) TextView txtcourseName;
-        @BindView(R.id.txtQualification) TextView txtqualification;
-        @BindView(R.id.txtInstitution) TextView txtinstitution;
-        @BindView(R.id.txtYear) TextView txtyear;
+        @BindView(R.id.txtCourseName) TextView courseName;
+        @BindView(R.id.txtQualification) TextView qualification;
+        @BindView(R.id.txtInstitution) TextView institution;
+        @BindView(R.id.txtYear) TextView year;
 
         public ViewHolder(View itemView){
             super(itemView);
