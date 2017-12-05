@@ -34,7 +34,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
-
+<!--
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,7 +43,7 @@
         android:layout_weight="0.17"
         android:src="@drawable/logo"
         />
-
+-->
     <Button
         android:id="@+id/sign_up"
         android:layout_marginTop="40dp"

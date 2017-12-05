@@ -155,7 +155,7 @@ public class FacilitatorActivity extends AppCompatActivity
                 adapter = new PersonAdapter(studentList);
                 adapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(adapter);
-               totalStudents.setText(String.valueOf(counter));
+                totalStudents.setText(String.valueOf(counter));
                 //Toast.makeText(getApplicationContext(), " " + counter ,Toast.LENGTH_SHORT).show();
             }
 
@@ -178,6 +178,8 @@ public class FacilitatorActivity extends AppCompatActivity
                     String username = personObj.getName() + " " + personObj.getSurname();
                     nav_name.setText(username);
                     nav_email.setText(mFirebaseUser.getEmail());
+
+
                 }
 
                 }

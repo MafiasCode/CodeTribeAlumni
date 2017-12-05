@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.coelab.codetribealumni.Tab1;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StudentActivity extends AppCompatActivity {
 
     /**
@@ -88,6 +90,8 @@ public class StudentActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.exit) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getBaseContext(),SignInActivity.class));
             finish();
             return true;
         }
