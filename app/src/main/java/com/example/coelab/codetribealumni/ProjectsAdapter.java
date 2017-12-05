@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectHolder> {
     private ArrayList<Project> proList;
     private Activity context;
-    Project project;
+    Project projects;
     public ProjectsAdapter(ArrayList<Project> listOfProjects, Activity applicationContext) {
         proList = listOfProjects;
         context = applicationContext;
@@ -39,17 +39,17 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
     @Override
     public void onBindViewHolder(ProjectHolder holder, int position) {
-        project = proList.get(position);
+        projects = proList.get(position);
         //testing
-        holder.setProjectName(project.getProjectName());
-        holder.setProjectLink(project.getProjectLink());
+        holder.setProjectName(projects.getProjectName());
+        holder.setProjectLink(projects.getProjectLink());
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String link = project.getProjectLink();
+                String link = projects.getProjectLink();
                 if(link != null){
                     Toast.makeText(context, link, Toast.LENGTH_SHORT).show();
-                    context.startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com")));
+                    //context.startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/" + projects.getProjectName())));
                 }
             }
         });

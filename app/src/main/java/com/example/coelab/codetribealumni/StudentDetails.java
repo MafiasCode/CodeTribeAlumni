@@ -2,6 +2,7 @@ package com.example.coelab.codetribealumni;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class StudentDetails extends AppCompatActivity {
     private CollapsingToolbarLayout collapsing;
     private ProjectsAdapter adapter;
     private RecyclerView recProject,recExperience;
+    AppBarLayout lay;
     private WorkExperienceAdapter wAdapter;
     String id;
     ArrayList<Experience> experienceList;
@@ -50,7 +52,9 @@ public class StudentDetails extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        lay = findViewById(R.id.app_bar_layout);
+        //setSupportActionBar(lay);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //collapsing = (CollapsingToolbarLayout) findViewById(R.id.collapseActionView);
         collapsing = new CollapsingToolbarLayout(this);
@@ -112,7 +116,7 @@ public class StudentDetails extends AppCompatActivity {
         location = (TextView) findViewById(R.id.stLocation);
         year = (TextView) findViewById(R.id.stYear);
         if(p != null){
-            //nams.setText();
+            nams.setText(p.getName() + " " + p.getSurname());
             gender.setText(p.getGender());
             role.setText(p.getRole());
             cellphone.setText(p.getCell());
@@ -120,7 +124,7 @@ public class StudentDetails extends AppCompatActivity {
             location.setText(p.getLocation());
             year.setText(p.getYear());
             toolbar.setTitle(p.getName() + " " + p.getSurname());
-
+            toolbar.setTitle("Name");
             //collapsing.setTitle(p.getName() + " " + p.getSurname());
         }
         final Query experienceQuery = ref.child("Experience").orderByChild("id").equalTo(id);
