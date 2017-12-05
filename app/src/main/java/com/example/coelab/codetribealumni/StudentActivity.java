@@ -82,10 +82,6 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 40937b227940a345c8600cd4db2f2199febf8abe
         if (id == R.id.about_us) {
             Intent intent = new Intent(this,About_Us_Activity.class);
             startActivity(intent);
