@@ -32,8 +32,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("");
         //progress dialog
         dialog = new ProgressDialog(this);
         dialog.setTitle("Signing in");
@@ -101,7 +101,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 Intent intent = new Intent(getApplicationContext(),StudentActivity.class);
                                 intent.putExtra("Id",user.getUid());
                                 startActivity(intent);
-                                Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
                             }
                         }

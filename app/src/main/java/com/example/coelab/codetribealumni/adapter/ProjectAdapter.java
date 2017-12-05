@@ -31,6 +31,7 @@ import java.util.List;
 public class ProjectAdapter extends ArrayAdapter<Project> {
     Project p;
     DatabaseReference ref;
+
     public ProjectAdapter(@NonNull Context context, @NonNull List<Project> objects) {
         super(context, 0, objects);
     }
@@ -39,8 +40,8 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
-        if(view == null){
-            view = LayoutInflater.from(getContext()).inflate(R.layout.project_layout,parent,false);
+        if (view == null) {
+            view = LayoutInflater.from(getContext()).inflate(R.layout.project_layout, parent, false);
         }
         p = getItem(position);
         ref = FirebaseDatabase.getInstance().getReference("Projects");
@@ -52,8 +53,8 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
-                View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout,null);
+                Toast.makeText(getContext(), p.getProjectName(), Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout, null);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setView(view);
                 dialog.setTitle("Edit project");
@@ -68,7 +69,7 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
                         String link = appLink.getText().toString().trim();
                         String ids = ref.push().getKey();
                         String id = p.getId();
-                        Project p = new Project(id,name,link);
+                        Project p = new Project(id, name, link);
                         ref.child(ids).setValue(p);
                     }
                 });

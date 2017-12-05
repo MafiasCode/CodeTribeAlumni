@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText android:id="@+id/dialogCourseName"
+        android:hint="Course Name"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText android:id="@+id/dialogQualification"
+        android:hint="Qualification"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:layout_marginRight="40dp"
+        android:inputType="textMultiLine"
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText android:id="@+id/dialogInstitution"
+        android:hint="Institution"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:layout_marginRight="40dp"
+        android:inputType="textMultiLine"
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText android:id="@+id/dialogYear"
+        android:hint="Year"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:layout_marginRight="40dp"
+        android:inputType="textMultiLine"
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

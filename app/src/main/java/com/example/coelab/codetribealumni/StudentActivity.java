@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.coelab.codetribealumni.Tab1;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StudentActivity extends AppCompatActivity {
 
     /**
@@ -40,6 +42,7 @@ public class StudentActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Student details");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -81,18 +84,18 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+<<<<<<< HEAD
+=======
 
-        if (id == R.id.career_opp) {
-            //Intent intent =   new Intent(this,CareerOpportunitiesActivity.class);
-            //startActivity(intent);
-            return true;
-        }
+>>>>>>> 40937b227940a345c8600cd4db2f2199febf8abe
         if (id == R.id.about_us) {
             Intent intent = new Intent(this,About_Us_Activity.class);
             startActivity(intent);
             return true;
         }
         if (id == R.id.exit) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getBaseContext(),SignInActivity.class));
             finish();
             return true;
         }
