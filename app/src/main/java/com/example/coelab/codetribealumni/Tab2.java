@@ -68,7 +68,8 @@ public class Tab2 extends Fragment {
                 Person p = dataSnapshot.getValue(Person.class);
                 if(p != null){
                     location = p.getLocation();
-                    if(location != null){
+                    if(location != null)
+					{
                         DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Userprofiles");
                         ref2.addChildEventListener(new ChildEventListener() {
                             @Override
@@ -131,7 +132,7 @@ public class Tab2 extends Fragment {
             TextView name = (TextView) view.findViewById(R.id.viewName);
             name.setText(p.getName() + " " + p.getSurname());
             TextView loc = (TextView) view.findViewById(R.id.viewGender);
-            loc.setText(p.getGender());
+            loc.setText(p.getLocation());
             return view;
         }
     }
