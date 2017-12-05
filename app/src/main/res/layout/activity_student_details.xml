@@ -13,32 +13,33 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
-            android:fitsSystemWindows="true">
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
                 android:id="@+id/studProfile"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/blank_image1"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                />
-        <!--<ImageView
-            android:layout_width="150dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/blank_profile"
-            android:layout_height="150dp" />-->
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/blank_image1" />
+            <!--<ImageView
+                android:layout_width="150dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/blank_profile"
+                android:layout_height="150dp" />-->
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -48,23 +49,20 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:scrollbarStyle="insideInset"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:clipToPadding="true"
+        android:scrollbarStyle="insideInset"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/stNames"
                 android:layout_width="match_parent"
@@ -72,6 +70,7 @@
                 android:layout_marginLeft="2dp"
                 android:gravity="center"
                 android:text="Names"
+                android:visibility="gone"
                 android:textColor="@android:color/black"
                 android:textSize="15dp" />
 
@@ -150,10 +149,14 @@
                 android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recAcoomplishment"
                 android:layout_width="match_parent"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_height="wrap_content" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -172,10 +175,10 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recExperience"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:scrollbarStyle="insideOverlay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:scrollbars="vertical"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <View
                 android:layout_width="match_parent"
@@ -195,10 +198,11 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recProjects"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </LinearLayout>
-        </ScrollView>
+
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

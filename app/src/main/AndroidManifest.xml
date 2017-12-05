@@ -60,15 +60,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".FacilitatorLandingPage" />
-
-        <activity android:name=".WorkExperience"
-            android:parentActivityName=".StudentActivity">
-
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".StudentActivity">
-        </meta-data>
-        </activity>
+        <activity android:name=".WorkExperience" />
+        <activity android:name=".AddAccomplishment" />
         <activity android:name=".AddExperience" />
         <activity
             android:name=".ViewStudentProfileActivity"

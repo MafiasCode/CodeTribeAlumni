@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+        /*if (user != null) {
             String mail = user.getEmail();
             String[] token = mail.split("@");
             if(token[1].equalsIgnoreCase("mlab.co.za")){
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),StudentActivity.class);
                 startActivity(intent);
             }
-        }
+        }*/
     }
     public void sign_in(View view){
 

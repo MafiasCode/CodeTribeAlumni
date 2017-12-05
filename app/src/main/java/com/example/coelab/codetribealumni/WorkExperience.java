@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,22 +32,20 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
     private ListView experienceList;
     private FloatingActionButton addExperience;
     private DatabaseReference ref;
-    private FirebaseAuth auth;
     private ArrayList<Experience> exList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_experience);
         getSupportActionBar().setTitle("Employment");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         experienceList = findViewById(R.id.xperienceList);
-        auth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("Experience");
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final String id = auth.getCurrentUser().getUid();
                 Experience ex = dataSnapshot.getValue(Experience.class);
-                if(ex != null && ex.getId().equalsIgnoreCase(id)){
+                if(ex != null){
                     exList.add(ex);
                     ExperienceAdapter adapter = new ExperienceAdapter(getApplicationContext(),exList);
                     experienceList.setAdapter(adapter);
@@ -83,5 +82,12 @@ public class WorkExperience extends AppCompatActivity implements View.OnClickLis
         if(v == addExperience){
             startActivity(new Intent(getApplicationContext(),AddExperience.class));
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), StudentActivity.class);
+        startActivity(myIntent);
+        return true;
+
     }
 }

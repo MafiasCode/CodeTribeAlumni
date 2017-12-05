@@ -52,7 +52,7 @@ public class Tab2 extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Person p = list.get(i);
                 //Toast.makeText(getContext(), p.getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(),StudentDetails.class);
+                Intent intent = new Intent(getContext(),ViewStudentInfo.class);
                 intent.putExtra("Person",p);
                 startActivity(intent);
             }
@@ -131,7 +131,7 @@ public class Tab2 extends Fragment {
             TextView name = (TextView) view.findViewById(R.id.viewName);
             name.setText(p.getName() + " " + p.getSurname());
             TextView loc = (TextView) view.findViewById(R.id.viewGender);
-            loc.setText(p.getLocation());
+            loc.setText(p.getGender());
             return view;
         }
     }
